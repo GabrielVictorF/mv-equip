@@ -3,28 +3,50 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { NovaMovimentacaoPage } from '../pages/nova-movimentacao/nova-movimentacao';
+import { MovimentacoesPage } from '../pages/movimentacoes/movimentacoes';
+import { EquipamentosPage } from '../pages/equipamentos/equipamentos';
+import { NovoEquipamentoPage } from '../pages/novo-equipamento/novo-equipamento';
+import { DetalhePage } from '../pages/detalhe/detalhe';
+
+import { ApiProvider } from '../providers/api/api';
+import { FunctionsProvider } from '../providers/functions/functions';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    NovaMovimentacaoPage,
+    MovimentacoesPage,
+    EquipamentosPage,
+    NovoEquipamentoPage,
+    DetalhePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    NovaMovimentacaoPage,
+    MovimentacoesPage,
+    EquipamentosPage,
+    NovoEquipamentoPage,
+    DetalhePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiProvider,
+    FunctionsProvider
   ]
 })
 export class AppModule {}

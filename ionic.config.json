@@ -1,5 +1,7 @@
 {
   "name": "mv-equip",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
