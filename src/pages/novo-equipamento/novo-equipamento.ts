@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
 
-import { Equipamento } from '../../models/equipamento';
 /**
  * Generated class for the NovoEquipamentoPage page.
  *
@@ -19,7 +18,7 @@ import { Equipamento } from '../../models/equipamento';
 })
 export class NovoEquipamentoPage {
 
-	private equipamento: Equipamento = new Equipamento;
+	private equipamento;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   				public api: ApiProvider, private functionsPro: FunctionsProvider) {
   }
@@ -29,7 +28,7 @@ export class NovoEquipamentoPage {
   }
 
   postEquipamento() {
-  	this.api.postEquipamento(this.equipamento).subscribe((res: Equipamento) =>
+  	this.api.postEquipamento(this.equipamento).subscribe(res =>
       this.functionsPro.showToast('Equipamento cadastrado com sucesso!')
     );
   }

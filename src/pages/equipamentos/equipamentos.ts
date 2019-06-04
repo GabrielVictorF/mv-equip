@@ -6,7 +6,6 @@ import { ApiProvider } from '../../providers/api/api';
 import { NovoEquipamentoPage } from '../novo-equipamento/novo-equipamento';
 import { DetalhePage } from '../detalhe/detalhe';
 
-import { Equipamento } from '../../models/equipamento';
 /**
  * Generated class for the EquipamentosPage page.
  *
@@ -20,7 +19,7 @@ import { Equipamento } from '../../models/equipamento';
   templateUrl: 'equipamentos.html',
 })
 export class EquipamentosPage {
-  private equipamentos: Equipamento;
+  private equipamentos;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   			public api: ApiProvider) {
   		this.getEquipamentos();
@@ -31,7 +30,7 @@ export class EquipamentosPage {
   }
 
   private getEquipamentos() {
-  	this.api.getAllEquipamentos().subscribe((res: Equipamento) => 
+  	this.api.getAllEquipamentos().subscribe(res =>
       this.equipamentos = res,
     );
   }
@@ -40,7 +39,7 @@ export class EquipamentosPage {
   	this.navCtrl.push(NovoEquipamentoPage);
   }
 
-  pageDetalhe(equipamento: Equipamento) {
+  pageDetalhe(equipamento) {
     this.navCtrl.push(DetalhePage, {'equipamentoSelecionado': equipamento});
   }
 }

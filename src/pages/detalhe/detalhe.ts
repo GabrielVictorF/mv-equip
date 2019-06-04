@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Equipamento } from '../../models/equipamento';
 /**
  * Generated class for the DetalhePage page.
  *
@@ -15,7 +14,7 @@ import { Equipamento } from '../../models/equipamento';
   templateUrl: 'detalhe.html',
 })
 export class DetalhePage {
-	private equipamento: Equipamento = this.navParams.get('equipamentoSelecionado');
+	private equipamento = this.navParams.get('equipamentoSelecionado');
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	console.log(this.equipamento);
   }

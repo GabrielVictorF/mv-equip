@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Equipamento } from '../../models/equipamento';
-
 /*
   Generated class for the ApiProvider provider.
 
@@ -12,7 +10,7 @@ import { Equipamento } from '../../models/equipamento';
 @Injectable()
 export class ApiProvider {
 
-	private url = "http://192.168.0.4:8080";
+	private url = "http://192.168.0.5:8080";
 	private httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -28,10 +26,27 @@ export class ApiProvider {
   	return this.http.get(url, this.httpOptions);
   }
 
-  public postEquipamento(equipamento: Equipamento) {
+  public postEquipamento(equipamento) {
   	let url = this.url + '/mv_equip/public/equipamento';
   	let body = equipamento;
     console.log(body);
   	return this.http.post(url, body, this.httpOptions);
   }
+
+  public getPesquisaEquipamento(tombamento: string) {
+    let url = this.url + '/_QUERIES/get/where_equipamentos?tomb=' + tombamento;
+		console.log(url)
+    return this.http.get(url, this.httpOptions);
+  }
+
+	public getPesquisaUsuario(nome: string) {
+		let url = this.url + '/_QUERIES/get/pesquisa-usuario?usuario=' + nome;
+		return this.http.get(url, this.httpOptions);
+	}
+
+	public postEmprestimo(emprestimo) {
+		let url = this.url + '/mv_equip/public/emprestimo';
+		let body = emprestimo;
+		return this.http.post(url, body, this.httpOptions);
+	}
 }

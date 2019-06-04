@@ -1,13 +1,22 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
+    <ion-title text-center>
+      Página inicial
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
- <button ion-button (click)="pageNovaMovimentacao()">Nova movimentação</button>
- <button ion-button (click)="pageMovimentacoes()">Ver movimentações</button>
- <button ion-button (click)="pageEquipamentos()">Ver equipamentos</button>
+  <button ion-button full color="secondary" (click)="pageNovaMovimentacao()" icon-end>
+    Nova movimentação
+    <ion-icon name="add-circle" color="primary"></ion-icon>
+  </button>
+  <button ion-button full color="secondary" (click)="pageMovimentacoes()" icon-end>
+    Ver movimentações
+    <ion-icon name="checkbox" color="primary"></ion-icon>
+  </button>
+ <button ion-button full color="secondary" (click)="pageEquipamentos()" icon-end>
+   Ver equipamentos
+   <ion-icon name="add-circle" color="primary"></ion-icon>
+ </button>
 </ion-content>
