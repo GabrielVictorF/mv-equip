@@ -35,6 +35,19 @@ export class EquipamentosPage {
     );
   }
 
+  pesquisa(ev: any) { //Campo de pesquisa de equipamentos
+  	let val = ev.target.value;
+  	if (val && val.trim() != '') {
+	  	this.api.getPesquisaEquipamento(val).subscribe((res: any) => { //!MODEL
+	  		this.equipamentos = res;
+	  	}, Error => {
+        this.functions.showToast("Erro ao obter equipamentos, favor tentar novamente!");
+      });
+  	} else {
+  		this.equipamentos = null;
+  	}
+	}
+
   pageNovoEquipamento() {
   	this.navCtrl.push(NovoEquipamentoPage);
   }

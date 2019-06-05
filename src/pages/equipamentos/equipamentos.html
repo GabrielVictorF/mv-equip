@@ -11,6 +11,10 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-item>
+		<ion-searchbar placeholder="Pesquisar equipamentos"
+			(ionInput)="pesquisa($event)"></ion-searchbar>
+	</ion-item>
 	<ion-list>
 		<ion-list-header>
 			Equipamentos

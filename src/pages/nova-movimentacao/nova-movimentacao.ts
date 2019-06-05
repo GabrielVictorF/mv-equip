@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 import { ApiProvider } from '../../providers/api/api';
+import { FunctionsProvider } from '../../providers/functions/functions';
 /**
  * Generated class for the NovaMovimentacaoPage page.
  *
@@ -29,7 +30,8 @@ export class NovaMovimentacaoPage {
   private usuarios = []; //Searchbar
 	private equipamentos_selecionados = []; //Selecionados para movimentação
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public api: ApiProvider, public functions: FunctionsProvider) {
   	console.log(this.emprestimo)
   }
 
@@ -37,12 +39,14 @@ export class NovaMovimentacaoPage {
     console.log('ionViewDidLoad NovaMovimentacaoPage');
   }
 
-  pesquisa(ev: any) {
+  pesquisa(ev: any) { //Campo de pesquisa de equipamentos
   	let val = ev.target.value;
   	if (val && val.trim() != '') {
 	  	this.api.getPesquisaEquipamento(val).subscribe((res: any) => { //!MODEL
 	  		this.equipamentos = res;
-	  	});
+	  	}, Error => {
+        this.functions.showToast("Erro ao obter equipamentos, favor tentar novamente!");
+      });
   	} else {
   		this.equipamentos = null;
   	}
@@ -54,7 +58,9 @@ export class NovaMovimentacaoPage {
 	  	this.api.getPesquisaUsuario(val).subscribe((res: any) => { //!MODEL
         console.log(res);
 	  		this.usuarios = res;
-	  	});
+	  	}, Error => {
+        this.functions.showToast("Erro ao obter usuários, favor tentar novamente!");
+      });
   	} else {
   		this.usuarios = null;
   	}
