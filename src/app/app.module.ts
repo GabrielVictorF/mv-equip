@@ -16,6 +16,8 @@ import { DetalhePage } from '../pages/detalhe/detalhe';
 import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
 
+import { MenuComponent } from '../components/menu/menu';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +26,8 @@ import { FunctionsProvider } from '../providers/functions/functions';
     MovimentacoesPage,
     EquipamentosPage,
     NovoEquipamentoPage,
-    DetalhePage
+    DetalhePage,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
