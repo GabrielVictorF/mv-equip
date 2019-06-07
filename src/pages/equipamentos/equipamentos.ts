@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 
-import { ApiProvider } from '../../providers/api/api';
-
 import { NovoEquipamentoPage } from '../novo-equipamento/novo-equipamento';
 import { DetalhePage } from '../detalhe/detalhe';
+
+import { FunctionsProvider } from '../../providers/functions/functions';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the EquipamentosPage page.
@@ -21,7 +22,7 @@ import { DetalhePage } from '../detalhe/detalhe';
 export class EquipamentosPage {
   private equipamentos;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  			public api: ApiProvider) {
+  			public api: ApiProvider, public functions: FunctionsProvider) {
   		this.getEquipamentos();
   }
 

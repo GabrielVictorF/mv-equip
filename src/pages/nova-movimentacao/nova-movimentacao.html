@@ -12,9 +12,9 @@
 		<ion-item *ngFor="let x of equipamentos" (click)="adicionarEquipamento(x)">
 			{{x.equipamento_tomb }} - {{x.equipamento_descricao}}
 		</ion-item>
-	<ion-chip color="secondary" *ngFor="let x of equipamentos_selecionados; let i = index">
-		<ion-icon name="flag" color="primary"></ion-icon>
-		<ion-label>{{x.equipamento_tomb}}</ion-label>
+	<ion-chip color="secondary" *ngFor="let x of equipamentos_selecionados; let i = index" class="chip">
+		<ion-icon color="primary">{{i + 1}}</ion-icon>
+		<ion-label>{{x.equipamento_tomb}} | {{ x.equipamento_descricao }}</ion-label>
 			<button ion-button (click)="deletar(i)">
     			<ion-icon name="close"></ion-icon>
   			</button>
@@ -37,33 +37,32 @@
   		<ion-input type="text" name="orgao"></ion-input>
   	</ion-item>
   	<ion-item>
-  	    <ion-label stacked>
-  	    	Tombamento
-  	      <ion-icon name="calculator"></ion-icon>
-  	    </ion-label>
-      <ion-icon name="clock"></ion-icon>
-  		<ion-input type="number" placeholder="Identificação do equipamento" required name="tombamento"></ion-input>
-  	</ion-item>
-  	<ion-item>
   		<ion-label>
   			Data de empréstimo
   			<ion-icon name="calendar"></ion-icon>
   		</ion-label>
-  		<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm" monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro" monthShortNames="Jan, Fev, Mar, Maio, Jun, Jul, Ago, Set, Out, Nov, Dez" cancelText="Cancelar" doneText="Feito" placeholder="Data da movimentação"></ion-datetime>
+  		<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm"
+        monthNames="{{functions.mesNomes}}"
+        monthShortNames="{{functions.mesShort}}"
+        cancelText="Cancelar" doneText="Feito" placeholder="Data da movimentação"
+        [(ngModel)]="emprestimo.data_emprestimo" name="data_emprestimo">
+      </ion-datetime>
   	</ion-item>
   	<ion-item>
   		<ion-label>
   			Data de devolução
   			<ion-icon name="calendar"></ion-icon>
   		</ion-label>
-  		<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm" monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro" monthShortNames="Jan, Fev, Mar, Maio, Jun, Jul, Ago, Set, Out, Nov, Dez" cancelText="Cancelar" doneText="Feito" placeholder="Data de devolução"></ion-datetime>
+    	<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm" 
+      monthNames="{{functions.mesNomes}}" monthShortNames="{{functions.mesShort}}" cancelText="Cancelar" doneText="Feito" placeholder="Data de devolução"  [(ngModel)]="emprestimo.data_devolucao" name="data_devolucao"
+      ></ion-datetime>
   	</ion-item>
     <ion-item>
   		<ion-searchbar placeholder="Usuário responsável"
   			(ionInput)="pesquisaUsuario($event)"></ion-searchbar>
   	</ion-item>
     <ion-item *ngFor="let x of usuarios">
-			{{x.usuario_nome }}
+			{{x.usuario_nome }} - {{ x.orgao_sigla }}
 		</ion-item>
     <ion-item>
       <button ion-button full type="submit">Enviar</button>

@@ -20,15 +20,17 @@ export class NovaMovimentacaoPage {
 	public emprestimo = {
     emprestimo_id: null,
     equipamento_id: [],
-  	data_emprestimo: '',
-  	data_devolucao: '',
+  	data_emprestimo: this.functions.getTimezone(),
+  	data_devolucao: this.functions.getTimezone(),
   	observacao: '',
   	usuario_id: null,
   	tipo_emprestimo: 'I'
   }
 	private equipamentos = []; //Searchbar
   private usuarios = []; //Searchbar
+  private usuario_orgao;;
 	private equipamentos_selecionados = []; //Selecionados para movimentação
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public api: ApiProvider, public functions: FunctionsProvider) {
@@ -56,7 +58,6 @@ export class NovaMovimentacaoPage {
     let val = ev.target.value;
   	if (val && val.trim() != '') {
 	  	this.api.getPesquisaUsuario(val).subscribe((res: any) => { //!MODEL
-        console.log(res);
 	  		this.usuarios = res;
 	  	}, Error => {
         this.functions.showToast("Erro ao obter usuários, favor tentar novamente!");
@@ -81,6 +82,7 @@ export class NovaMovimentacaoPage {
 	}
 
   postEmprestimo() {
+    console.log(this.emprestimo)
     this.api.postEmprestimo(this.emprestimo).subscribe(res => {
       console.log(res);
     })

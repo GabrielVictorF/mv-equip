@@ -40,9 +40,14 @@ export class ApiProvider {
   }
 
 	public getPesquisaUsuario(nome: string) {
-		let url = this.url + '/_QUERIES/get/pesquisa-usuario?usuario=' + nome;
+		let url = this.url + '/_QUERIES/get/full-usuario?usuario=' + nome;
 		return this.http.get(url, this.httpOptions);
 	}
+
+  /*public getOrgao(orgao_id: number) {
+    let url = this.url + '/mv_equip/public/orgao?orgao_id=' + orgao_id;
+    return this.http.get(url, this.httpOptions);
+  } */
 
 	public postEmprestimo(emprestimo) {
 		let url = this.url + '/mv_equip/public/emprestimo';
