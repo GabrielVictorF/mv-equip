@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { NavController, App } from 'ionic-angular';
 
+import { LoginPage } from '../../pages/login/login';
 /**
  * Generated class for the MenuComponent component.
  *
@@ -14,9 +16,12 @@ export class MenuComponent {
 
   text: string;
 
-  constructor() {
+  constructor(public app: App) {
     console.log('Hello MenuComponent Component');
     this.text = 'Hello World';
   }
 
+  pageLogin() {
+    this.app.getRootNavs()[0].setRoot(LoginPage)
+  }
 }

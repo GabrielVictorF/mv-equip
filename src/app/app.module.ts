@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { Profile } from '../pages/home/home';
 import { NovaMovimentacaoPage } from '../pages/nova-movimentacao/nova-movimentacao';
 import { MovimentacoesPage } from '../pages/movimentacoes/movimentacoes';
 import { EquipamentosPage } from '../pages/equipamentos/equipamentos';
 import { NovoEquipamentoPage } from '../pages/novo-equipamento/novo-equipamento';
 import { DetalhePage } from '../pages/detalhe/detalhe';
+import { LoginPage } from '../pages/login/login';
 
 import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
@@ -22,11 +24,13 @@ import { MenuComponent } from '../components/menu/menu';
   declarations: [
     MyApp,
     HomePage,
+    Profile,
     NovaMovimentacaoPage,
     MovimentacoesPage,
     EquipamentosPage,
     NovoEquipamentoPage,
     DetalhePage,
+    LoginPage,
     MenuComponent
   ],
   imports: [
@@ -38,11 +42,13 @@ import { MenuComponent } from '../components/menu/menu';
   entryComponents: [
     MyApp,
     HomePage,
+    Profile,
     NovaMovimentacaoPage,
     MovimentacoesPage,
     EquipamentosPage,
     NovoEquipamentoPage,
-    DetalhePage
+    DetalhePage,
+    LoginPage
   ],
   providers: [
     StatusBar,

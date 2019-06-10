@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { NovoEquipamentoPage } from '../novo-equipamento/novo-equipamento';
 import { DetalhePage } from '../detalhe/detalhe';
@@ -22,7 +22,8 @@ import { ApiProvider } from '../../providers/api/api';
 export class EquipamentosPage {
   private equipamentos;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  			public api: ApiProvider, public functions: FunctionsProvider) {
+  			public api: ApiProvider, public functions: FunctionsProvider,
+        public loadingCtrl: LoadingController) {
   		this.getEquipamentos();
   }
 
@@ -31,9 +32,13 @@ export class EquipamentosPage {
   }
 
   private getEquipamentos() {
-  	this.api.getAllEquipamentos().subscribe(res =>
-      this.equipamentos = res,
-    );
+    let load = this.loadingCtrl.create({
+      content: 'Obtendo equipamentos...'
+    }); load.present();
+  	this.api.getAllEquipamentos().subscribe(res => {
+      this.equipamentos = res;
+      load.dismiss();
+    });
   }
 
   pesquisa(ev: any) { //Campo de pesquisa de equipamentos

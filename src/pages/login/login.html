@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title text-center>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div text-center>
+    <img src="https://3.bp.blogspot.com/-L5HsuL73E8M/Wse64xnft8I/AAAAAAAALdE/sEFacd6oj4E6QXUL78HIj9f1pz78N5GxQCLcBGAs/s320/001.JPG">
+  </div>
+
+  <br/>
+
+  <div class="card text-white bg-danger">
+    <div class="card-header" text-center>Login</div>
+    <div class="card-body">
+      <p class="card-text texto-card">
+        <form (ngSubmit)="logar()" [formGroup]="formValida">
+          <ion-item>
+            <ion-label stacked><span style="font-size: 1.7rem;">E-mail ou nome de usuário </span><ion-icon name="mail"></ion-icon> </ion-label>
+            <ion-input type="email" formControlName="login" placeholder="Email ou usuário..." [(ngModel)]="user.email" name="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked><span style="font-size: 1.7rem;">Senha </span><ion-icon name="lock"></ion-icon> </ion-label>
+            <ion-input type="password" name="senha" formControlName="senha" placeholder="Senha..." [(ngModel)]="user.password" name="password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <button ion-button full color="light" round icon-end type="submit" [disabled]="!formValida.valid">
+              Entrar
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-item>
+        </form>
+      </div>
+    </div>
+    <ion-fab right bottom>
+      <button ion-fab (click)="cadastrar()" color="light">
+        <ion-icon name="open"></ion-icon>
+      </button>
+    </ion-fab>
+</ion-content>

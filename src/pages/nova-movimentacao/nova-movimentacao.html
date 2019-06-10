@@ -53,10 +53,18 @@
   			Data de devolução
   			<ion-icon name="calendar"></ion-icon>
   		</ion-label>
-    	<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm" 
+    	<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm"
       monthNames="{{functions.mesNomes}}" monthShortNames="{{functions.mesShort}}" cancelText="Cancelar" doneText="Feito" placeholder="Data de devolução"  [(ngModel)]="emprestimo.data_devolucao" name="data_devolucao"
       ></ion-datetime>
   	</ion-item>
+    <ion-item>
+      <ion-label>
+        Observação
+        <ion-icon name="add"></ion-icon>
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="emprestimo.observacao" placeholder="Observação acerca da movimentação"
+        name="observacao"></ion-input>
+    </ion-item>
     <ion-item>
   		<ion-searchbar placeholder="Usuário responsável"
   			(ionInput)="pesquisaUsuario($event)"></ion-searchbar>
