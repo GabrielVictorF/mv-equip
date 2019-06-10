@@ -1,7 +1,18 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons right>
+      <button ion-button icon-only (click)="dismissModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>Olá</ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content>
   <ion-item text-center><strong>Bem-vindo usuário</strong></ion-item>
   <h3 text-center>
-    Há 0 movimentações em andamento!
+    <div class="alert alert-success">Há 0 empréstimos em andamento.</div>
+    <div class="alert alert-danger">Há 0 empréstimos feitos por você!</div>
   </h3>
-  <button ion-button (click)="dismissModal()" disabled>Fechar</button>
 </ion-content>

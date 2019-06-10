@@ -9,6 +9,11 @@
 		<ion-searchbar placeholder="Equipamentos alocados"
 			(ionInput)="pesquisa($event)"></ion-searchbar>
 	</ion-item>
+  <div class="text-center" *ngIf="statusLoadingEquip">
+    <div class="spinner-border text-info" role="status">
+    </div>
+      <b>Carregando equipamentos...</b>
+  </div>
 		<ion-item *ngFor="let x of equipamentos" (click)="adicionarEquipamento(x)">
 			{{x.equipamento_tomb }} - {{x.equipamento_descricao}}
 		</ion-item>
@@ -69,11 +74,19 @@
   		<ion-searchbar placeholder="Usuário responsável"
   			(ionInput)="pesquisaUsuario($event)"></ion-searchbar>
   	</ion-item>
+    <div class="text-center" *ngIf="statusLoadingUsers">
+      <div class="spinner-border text-primary" role="status">
+      </div>
+      <strong>Carregando usuários...</strong>
+    </div>
     <ion-item *ngFor="let x of usuarios">
 			{{x.usuario_nome }} - {{ x.orgao_sigla }}
 		</ion-item>
     <ion-item>
-      <button ion-button full type="submit">Enviar</button>
+      <button ion-button full type="submit">
+        <span [ngClass]="statusNewMo"></span>
+        Enviar
+      </button>
     </ion-item>
   </form>
 </ion-content>

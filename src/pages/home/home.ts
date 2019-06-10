@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, ViewController } from 'ionic-angular';
 
 import { NovaMovimentacaoPage } from '../nova-movimentacao/nova-movimentacao';
 import { MovimentacoesPage } from '../movimentacoes/movimentacoes';
@@ -39,8 +39,11 @@ export class HomePage {
 })
 export class Profile {
 
- constructor() {
+ constructor(public viewCtrl: ViewController) {
 
  }
- dismissModal() {}
+
+ dismissModal() {
+   this.viewCtrl.dismiss();
+ }
 }

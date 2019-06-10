@@ -28,8 +28,11 @@ export class NovaMovimentacaoPage {
   }
 	private equipamentos = []; //Searchbar
   private usuarios = []; //Searchbar
-  private usuario_orgao;;
+  private usuario_orgao;
 	private equipamentos_selecionados = []; //Selecionados para movimentação
+  private statusNewMo;
+  private statusLoadingEquip = false;
+  private statusLoadingUsers = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -41,28 +44,38 @@ export class NovaMovimentacaoPage {
     console.log('ionViewDidLoad NovaMovimentacaoPage');
   }
 
-  pesquisa(ev: any) { //Campo de pesquisa de equipamentos
+  pesquisa(ev: any) { //Campo de pesquisa de
+    this.statusLoadingEquip = true; //TROCAR POR EVENTO POSTERIORMENTE
+
   	let val = ev.target.value;
-  	if (val && val.trim() != '') {
+  	if (val && val.trim() != '') { //Caso a request retorne SEM erro
 	  	this.api.getPesquisaEquipamento(val).subscribe((res: any) => { //!MODEL
+        this.statusLoadingEquip = false;
 	  		this.equipamentos = res;
-	  	}, Error => {
+	  	}, Error => { //Caso o request retorne erro
+        this.statusLoadingEquip = false;
         this.functions.showToast("Erro ao obter equipamentos, favor tentar novamente!");
       });
-  	} else {
+  	} else { //Caso o campo esteja vazio
+      this.statusLoadingEquip = false;
   		this.equipamentos = null;
   	}
 	}
 
   pesquisaUsuario(ev: any) {
+    this.statusLoadingUsers = true;
+
     let val = ev.target.value;
   	if (val && val.trim() != '') {
 	  	this.api.getPesquisaUsuario(val).subscribe((res: any) => { //!MODEL
+        this.statusLoadingUsers = false;
 	  		this.usuarios = res;
 	  	}, Error => {
+        this.statusLoadingUsers = false;
         this.functions.showToast("Erro ao obter usuários, favor tentar novamente!");
       });
   	} else {
+      this.statusLoadingUsers = false;
   		this.usuarios = null;
   	}
   }
@@ -83,8 +96,12 @@ export class NovaMovimentacaoPage {
 
   postEmprestimo() {
     console.log(this.emprestimo)
+    this.statusNewMo = 'spinner-border spinner-border-sm';
     this.api.postEmprestimo(this.emprestimo).subscribe(res => {
+      this.statusNewMo = '';
       console.log(res);
+    }, Error => {
+      this.statusNewMo = '';
     })
   }
 }
