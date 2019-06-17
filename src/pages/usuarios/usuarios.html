@@ -1,0 +1,40 @@
+<!--
+  Generated template for the UsuariosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>usuarios</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-item>
+		<ion-label stacked>
+			Tipo de usuário
+		</ion-label>
+		<ion-select interface="popover" [(ngModel)]="pesquisa.tipo">
+			<ion-option value="I">Usuários internos</ion-option>
+			<ion-option value="E">Usuários Externos</ion-option>
+		</ion-select>
+	</ion-item>
+	<ion-item *ngIf="pesquisa.tipo == 'I'">
+		<ion-label stacked>
+			Setores
+		</ion-label>
+		<ion-select interface="alert" [(ngModel)]="pesquisa.setor_id" multiple="true" [selectOptions]="optionsSetor">
+			<ion-option *ngFor="let x of setor" [value]="x.setor_id">{{ x.setor_sigla }}</ion-option>
+		</ion-select>
+	</ion-item>
+	<ion-item>
+		<button ion-button full rounded icon-end (click)="getPesquisa()">
+			Pesquisar
+			<ion-icon name="search"></ion-icon>
+		</button>
+	</ion-item>
+	<ion-item *ngFor="let x of resultado">
+		<strong>Usuário: </strong>{{ x.usuario_nome }}
+	</ion-item>
+</ion-content>

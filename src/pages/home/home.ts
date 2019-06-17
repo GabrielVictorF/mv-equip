@@ -4,6 +4,7 @@ import { NavController, ModalController, ViewController } from 'ionic-angular';
 import { NovaMovimentacaoPage } from '../nova-movimentacao/nova-movimentacao';
 import { MovimentacoesPage } from '../movimentacoes/movimentacoes';
 import { EquipamentosPage } from '../equipamentos/equipamentos';
+import { UsuariosPage } from '../usuarios/usuarios';
 
 @Component({
   selector: 'page-home',
@@ -12,7 +13,7 @@ import { EquipamentosPage } from '../equipamentos/equipamentos';
 export class HomePage {
   private modal;
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    this.iniciaModal();
+    //this.iniciaModal();
   }
 
   pageNovaMovimentacao() {
@@ -31,6 +32,10 @@ export class HomePage {
 
   pageEquipamentos() {
   	this.navCtrl.push(EquipamentosPage);
+  }
+
+  pageUsuarios() {
+    this.navCtrl.push(UsuariosPage);
   }
 }
 

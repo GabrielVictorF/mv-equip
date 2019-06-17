@@ -79,6 +79,9 @@
       </div>
       <strong>Carregando usuários...</strong>
     </div>
+    <div *ngIf="semResultadosUsers">
+      <ion-item text-center>Sem resultados</ion-item>
+    </div>
     <ion-item *ngFor="let x of usuarios">
 			{{x.usuario_nome }} - {{ x.orgao_sigla }}
 		</ion-item>

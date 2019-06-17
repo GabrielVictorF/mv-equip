@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-	private url = "http://192.168.0.5:8080";
+	private url = "http://172.30.89.33:8080";
 	private httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -44,6 +44,11 @@ export class ApiProvider {
 		return this.http.get(url, this.httpOptions);
 	}
 
+  public getSetores() {
+    let url = this.url + '/mv_equip/public/setor';
+    return this.http.get(url, this.httpOptions);
+  }
+
   /*public getOrgao(orgao_id: number) {
     let url = this.url + '/mv_equip/public/orgao?orgao_id=' + orgao_id;
     return this.http.get(url, this.httpOptions);
@@ -54,4 +59,9 @@ export class ApiProvider {
 		let body = emprestimo;
 		return this.http.post(url, body, this.httpOptions);
 	}
+
+  public getPesquisaFullUsuario(setor?) { //Utilizada na USUARIOSPAGE
+    let url = this.url + '_QUERIES/get/usuario-pesquisa-completa?setor=2';
+    return this.http.get(url, this.httpOptions);
+  }
 }

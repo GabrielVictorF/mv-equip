@@ -32,7 +32,9 @@ export class NovaMovimentacaoPage {
 	private equipamentos_selecionados = []; //Selecionados para movimentação
   private statusNewMo;
   private statusLoadingEquip = false;
+  private semResultadosEquip = false;
   private statusLoadingUsers = false;
+  private semResultadosUsers = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -52,6 +54,8 @@ export class NovaMovimentacaoPage {
 	  	this.api.getPesquisaEquipamento(val).subscribe((res: any) => { //!MODEL
         this.statusLoadingEquip = false;
 	  		this.equipamentos = res;
+        if (this.equipamentos.length == 0)
+          this.semResultadosEquip = true;
 	  	}, Error => { //Caso o request retorne erro
         this.statusLoadingEquip = false;
         this.functions.showToast("Erro ao obter equipamentos, favor tentar novamente!");
@@ -70,6 +74,8 @@ export class NovaMovimentacaoPage {
 	  	this.api.getPesquisaUsuario(val).subscribe((res: any) => { //!MODEL
         this.statusLoadingUsers = false;
 	  		this.usuarios = res;
+        if (this.usuarios.length == 0)
+          this.semResultadosUsers = true;
 	  	}, Error => {
         this.statusLoadingUsers = false;
         this.functions.showToast("Erro ao obter usuários, favor tentar novamente!");
