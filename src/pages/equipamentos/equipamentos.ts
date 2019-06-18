@@ -38,6 +38,9 @@ export class EquipamentosPage {
   	this.api.getAllEquipamentos().subscribe(res => {
       this.equipamentos = res;
       load.dismiss();
+    }, Error => {
+      this.functions.showToast('Erro ao obter equipamentos!');
+      load.dismiss();
     });
   }
 

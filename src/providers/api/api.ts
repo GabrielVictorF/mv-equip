@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-	private url = "http://172.30.89.33:8080";
+	private url = "http://192.168.0.5:8080";
 	private httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -45,7 +45,12 @@ export class ApiProvider {
 	}
 
   public getSetores() {
-    let url = this.url + '/mv_equip/public/setor';
+    let url = this.url + '/mv_equip/public/setor?_order=setor_sigla';
+    return this.http.get(url, this.httpOptions);
+  }
+
+  public getOrgaosExternos() {
+    let url = this.url + '/mv_equip/public/orgao?_orgao_id=$ne.2&_order=orgao_sigla'; //Retorna os orgaos externos em ordem alfalbética 
     return this.http.get(url, this.httpOptions);
   }
 
@@ -63,5 +68,11 @@ export class ApiProvider {
   public getPesquisaFullUsuario(setor?) { //Utilizada na USUARIOSPAGE
     let url = this.url + '_QUERIES/get/usuario-pesquisa-completa?setor=2';
     return this.http.get(url, this.httpOptions);
+  }
+
+  public getUsuariosExternos(orgaos) {
+   let url = this.url + '/mv_equip/public/usuario?orgao_id=$in.' + orgaos.toString();
+   console.log(url)
+   return this.http.get(url, this.httpOptions);   
   }
 }

@@ -20,6 +20,7 @@
 			<ion-option value="E">Usuários Externos</ion-option>
 		</ion-select>
 	</ion-item>
+	
 	<ion-item *ngIf="pesquisa.tipo == 'I'">
 		<ion-label stacked>
 			Setores
@@ -28,6 +29,16 @@
 			<ion-option *ngFor="let x of setor" [value]="x.setor_id">{{ x.setor_sigla }}</ion-option>
 		</ion-select>
 	</ion-item>
+
+	<ion-item *ngIf="pesquisa.tipo == 'E'">
+		<ion-label stacked>
+			Òrgãos externos
+		</ion-label>
+		<ion-select interface="alert" [(ngModel)]="pesquisa.orgao_id" multiple="true" [selectOptions]="optionsOrgao">
+			<ion-option *ngFor="let x of orgao" [value]="x.orgao_id">{{ x.orgao_sigla }}</ion-option>
+		</ion-select>
+	</ion-item>
+
 	<ion-item>
 		<button ion-button full rounded icon-end (click)="getPesquisa()">
 			Pesquisar
