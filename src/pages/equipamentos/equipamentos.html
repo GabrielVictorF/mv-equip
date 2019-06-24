@@ -15,6 +15,14 @@
 		<ion-searchbar placeholder="Pesquisar equipamentos"
 			(ionInput)="pesquisa($event)"></ion-searchbar>
 	</ion-item>
+	<div class="text-center" *ngIf="statusLoadingEquip == 1">
+	    <div class="spinner-border text-info" role="status">
+	    </div>
+	    <b>Carregando equipamentos...</b>
+  	</div>
+  	<div *ngIf="statusLoadingEquip == 2" text-center>
+  		Sem resultados
+  	</div>
 	<ion-list>
 		<ion-list-header>
 			Equipamentos
@@ -24,7 +32,7 @@
 		</a>
 	</ion-list>
 	<ion-fab right bottom>
-		<button ion-fab color="primary" (click)="pageNovoEquipamento()">
+		<button ion-fab color="primary" (click)="pageNovoEquipamento()" disabled="">
 			<ion-icon name="add"></ion-icon>
 		</button>
 	</ion-fab>

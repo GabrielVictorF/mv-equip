@@ -21,6 +21,8 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class EquipamentosPage {
   private equipamentos;
+  private statusLoadingEquip = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   			public api: ApiProvider, public functions: FunctionsProvider,
         public loadingCtrl: LoadingController) {
@@ -45,14 +47,25 @@ export class EquipamentosPage {
   }
 
   pesquisa(ev: any) { //Campo de pesquisa de equipamentos
+    this.statusLoadingEquip = 1;
   	let val = ev.target.value;
   	if (val && val.trim() != '') {
 	  	this.api.getPesquisaEquipamento(val).subscribe((res: any) => { //!MODEL
-	  		this.equipamentos = res;
+        this.equipamentos = res;
+        if (res.length > 0) {
+          console.log("RES > 0")
+          this.statusLoadingEquip = 0;
+        } else { 
+          console.log("RES < 0")
+          this.statusLoadingEquip = 2;
+        }
 	  	}, Error => {
+         this.statusLoadingEquip = 2;
         this.functions.showToast("Erro ao obter equipamentos, favor tentar novamente!");
       });
   	} else {
+      console.log("CAMPO ZERADO")
+      this.statusLoadingEquip = 2;
   		this.equipamentos = null;
   	}
 	}
