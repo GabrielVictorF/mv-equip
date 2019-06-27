@@ -23,13 +23,14 @@ export class NovaMovimentacaoPage {
   	data_emprestimo: this.functions.getTimezone(),
   	data_devolucao: this.functions.getTimezone(),
   	observacao: '',
-  	usuario_id: null,
+  	solicitante_id: null,
   	tipo_emprestimo: 'I'
   }
 	private equipamentos = []; //Searchbar
-  private usuarios = []; //Searchbar
+  private solicitante = []; //Searchbar
   private usuario_orgao;
 	private equipamentos_selecionados = []; //Selecionados para movimentação
+  private usuario_selecionado;
   private statusNewMo;
   private statusLoadingEquip = false;
   private semResultadosEquip = false;
@@ -73,16 +74,17 @@ export class NovaMovimentacaoPage {
   	if (val && val.trim() != '') {
 	  	this.api.getPesquisaUsuario(val).subscribe((res: any) => { //!MODEL
         this.statusLoadingUsers = false;
-	  		this.usuarios = res;
-        if (this.usuarios.length == 0)
+	  		this.solicitante = res;
+        console.log(this.solicitante)
+        if (this.solicitante.length == 0) // Sem resultados
           this.semResultadosUsers = true;
-	  	}, Error => {
+	  	}, Error => { //Erro na req
         this.statusLoadingUsers = false;
         this.functions.showToast("Erro ao obter usuários, favor tentar novamente!");
       });
-  	} else {
+  	} else {  // Caso o campo de pesquisa esteja zerado
       this.statusLoadingUsers = false;
-  		this.usuarios = null;
+  		this.solicitante = null;
   	}
   }
 
@@ -92,6 +94,11 @@ export class NovaMovimentacaoPage {
 		console.log("EQUIPAMENTO ADICIONADO");
 		console.log(this.equipamentos_selecionados);
 	}
+
+  adicionarSolicitante(solicitanteSelecionado) {
+    this.emprestimo.solicitante_id = solicitanteSelecionado.solicitante_id;
+    this.usuario_selecionado = solicitanteSelecionado;
+  }
 
 	deletar(index) {
 			this.equipamentos_selecionados.splice(index, 1);

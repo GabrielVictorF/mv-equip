@@ -40,7 +40,7 @@ export class ApiProvider {
   }
 
 	public getPesquisaUsuario(nome: string) {
-		let url = this.url + '/_QUERIES/get/full-usuario?usuario=' + nome;
+		let url = this.url + '/_QUERIES/get/full-usuario?solicitante=' + nome;
 		return this.http.get(url, this.httpOptions);
 	}
 
@@ -71,7 +71,7 @@ export class ApiProvider {
   }
 
   public getUsuariosExternos(orgaos) {
-   let url = this.url + '/mv_equip/public/usuario?orgao_id=$in.' + orgaos.toString();
+   let url = this.url + '/mv_equip/public/solicitante?orgao_id=$in.' + orgaos.toString();
    console.log(url)
    return this.http.get(url, this.httpOptions);   
   }

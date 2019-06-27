@@ -17,8 +17,8 @@ import { FunctionsProvider } from '../../providers/functions/functions';
   templateUrl: 'usuarios.html',
 })
 export class UsuariosPage {
-	private setor = [];
-  private orgao = [];
+	private setor;
+  private orgao;
 	private pesquisa = {
 		tipo: 'I',
 		setor_id: 0,
@@ -34,7 +34,7 @@ export class UsuariosPage {
     subtitle: '',
     mode: 'ios'
   }
-	private resultado = [];
+	private resultado;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   				public api: ApiProvider, public functions: FunctionsProvider) {
       this.api.getOrgaosExternos().subscribe(res => {
@@ -58,6 +58,7 @@ export class UsuariosPage {
     if (this.pesquisa.tipo == 'E') {
        this.api.getUsuariosExternos(this.pesquisa.orgao_id).subscribe(res => {
          this.resultado = res;
+         console.log(res)
        });
     } 
   	/*this.api.getPesquisaFullUsuario().subscribe(res => {
