@@ -25,7 +25,8 @@ import { MenuComponent } from '../components/menu/menu';
   declarations: [
     MyApp,
     HomePage,
-    Profile,
+    Profile, //MODAL
+    SolicitanteResponsavel, //MODAL
     NovaMovimentacaoPage,
     MovimentacoesPage,
     EquipamentosPage,
@@ -44,7 +45,8 @@ import { MenuComponent } from '../components/menu/menu';
   entryComponents: [
     MyApp,
     HomePage,
-    Profile,
+    Profile, //MODAL
+    SolicitanteResponsavel, //MODAL
     NovaMovimentacaoPage,
     MovimentacoesPage,
     EquipamentosPage,

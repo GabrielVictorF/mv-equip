@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 
 
 import { ApiProvider } from '../../providers/api/api';
@@ -36,10 +36,11 @@ export class NovaMovimentacaoPage {
   private semResultadosEquip = false;
   private statusLoadingUsers = false;
   private semResultadosUsers = false;
-
+  private modal;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public api: ApiProvider, public functions: FunctionsProvider) {
+              public api: ApiProvider, public functions: FunctionsProvider,
+              public modalCtrl: ModalController) {
   	console.log(this.emprestimo)
   }
 
@@ -117,4 +118,21 @@ export class NovaMovimentacaoPage {
       this.statusNewMo = '';
     })
   }
+
+  solicitanteModal() {
+    this.modal = this.modalCtrl.create(SolicitanteResponsavel);
+    this.modal.present();
+  }
+}
+
+export class SolicitanteResponsavel {
+
+ constructor(public viewCtrl: ViewController) {
+
+ }
+
+ dismissModal() {
+   this.viewCtrl.dismiss();
+ }
+}
 }

@@ -70,7 +70,10 @@
       <ion-input type="text" [(ngModel)]="emprestimo.observacao" placeholder="Observação acerca da movimentação"
         name="observacao"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="solicitanteModal()">
+      Solicitante do empréstimo
+    </ion-item>
+    <!--<ion-item>
   		<ion-searchbar placeholder="Usuário responsável"
   			(ionInput)="pesquisaUsuario($event)"></ion-searchbar>
   	</ion-item>
@@ -87,7 +90,7 @@
 		</ion-item>
     <ion-item *ngIf="usuario_selecionado">
       <strong>Usuário selecionado: </strong>{{usuario_selecionado.solicitante_nome}}
-    </ion-item>
+    </ion-item> -->
     <ion-item>
       <button ion-button full type="submit">
         <span [ngClass]="statusNewMo"></span>
