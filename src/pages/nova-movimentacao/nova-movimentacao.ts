@@ -125,6 +125,10 @@ export class NovaMovimentacaoPage {
   }
 }
 
+
+@Component({
+  templateUrl: 'usuario-responsavel-modal.html'
+})
 export class SolicitanteResponsavel {
 
  constructor(public viewCtrl: ViewController) {
@@ -134,5 +138,4 @@ export class SolicitanteResponsavel {
  dismissModal() {
    this.viewCtrl.dismiss();
  }
-}
 }

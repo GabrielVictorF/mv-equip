@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Profile } from '../pages/home/home';
+import { SolicitanteResponsavel } from '../pages/nova-movimentacao/nova-movimentacao';
 import { NovaMovimentacaoPage } from '../pages/nova-movimentacao/nova-movimentacao';
 import { MovimentacoesPage } from '../pages/movimentacoes/movimentacoes';
 import { EquipamentosPage } from '../pages/equipamentos/equipamentos';
