@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-	private url = "http://192.168.0.5:8080";
+	private url = "http://192.168.0.3:8080";
 	private httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -31,6 +31,12 @@ export class ApiProvider {
   	let body = equipamento;
     console.log(body);
   	return this.http.post(url, body, this.httpOptions);
+  }
+
+  public postSolicitante(solicitante) {
+    let url = this.url + '/mv_equip/public/solicitante';
+    let body = solicitante;
+    return this.http.post(url, body, this.httpOptions);
   }
 
   public getPesquisaEquipamento(tombamento: string) {

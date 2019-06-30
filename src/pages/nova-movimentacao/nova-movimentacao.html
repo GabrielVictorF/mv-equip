@@ -71,26 +71,8 @@
         name="observacao"></ion-input>
     </ion-item>
     <ion-item (click)="solicitanteModal()">
-      Solicitante do empréstimo
+      Solicitante do empréstimo: {{usuario_selecionado?.solicitante_nome}}
     </ion-item>
-    <!--<ion-item>
-  		<ion-searchbar placeholder="Usuário responsável"
-  			(ionInput)="pesquisaUsuario($event)"></ion-searchbar>
-  	</ion-item>
-    <div class="text-center" *ngIf="statusLoadingUsers">
-      <div class="spinner-border text-primary" role="status">
-      </div>
-      <strong>Carregando usuários...</strong>
-    </div>
-    <div *ngIf="semResultadosUsers">
-      <ion-item text-center>Sem resultados</ion-item>
-    </div>
-    <ion-item *ngFor="let x of solicitante" (click)="adicionarSolicitante(x)">
-			{{x.solicitante_nome }} - {{ x.orgao_sigla }}
-		</ion-item>
-    <ion-item *ngIf="usuario_selecionado">
-      <strong>Usuário selecionado: </strong>{{usuario_selecionado.solicitante_nome}}
-    </ion-item> -->
     <ion-item>
       <button ion-button full type="submit">
         <span [ngClass]="statusNewMo"></span>

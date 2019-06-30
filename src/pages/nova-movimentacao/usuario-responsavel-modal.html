@@ -1,5 +1,10 @@
 <ion-header>
 	<ion-navbar>
+		<ion-buttons left>
+			<button ion-button icon-only color="secondary">
+				<ion-icon name="person-add"></ion-icon>
+    </button>
+		</ion-buttons>
 		<ion-buttons right>
 			<button ion-button icon-only (click)="dismissModal()">
 				<ion-icon name="close"></ion-icon>
@@ -12,6 +17,67 @@
 </ion-header>
 
 <ion-content>
+	<ion-item text-center>
+  		<ion-searchbar placeholder="Usuário responsável"
+  			(ionInput)="pesquisaUsuario($event)"></ion-searchbar>
+  			OU <a data-toggle="collapse" href="#cadastro" aria-expanded="false" aria-controls="cadastro">cadastre um novo solicitante</a>
+  	</ion-item>
 
+  	<div id="cadastro" class="collapse"> <!-- Cadastro de solicitante -->
+  		<form (ngSubmit)="postSolicitante()">
+		  	<ion-item>
+		  		<ion-label stacked>
+		  			Nome
+		  			<ion-icon name="person"></ion-icon>
+		  		</ion-label>
+		  		<ion-input type="text" placeholder="Nome..." [(ngModel)]="solicitanteNew.solicitante_nome"
+		  		name="nome">
+		  		</ion-input>
+		  	</ion-item>
+		  	<ion-item>
+				<ion-label stacked>
+					Órgão
+					<ion-icon name="map"></ion-icon>
+				</ion-label>
+				<ion-select interface="alert" [(ngModel)]="solicitanteNew.orgao_id" multiple="false" [selectOptions]="optionsOrgao" name="orgao">
+					<ion-option *ngFor="let x of orgao" [value]="x.orgao_id">{{ x.orgao_sigla }}</ion-option>
+				</ion-select>
+			</ion-item>
 
+			<ion-item *ngIf="solicitanteNew.orgao_id == 2">
+				<ion-label stacked>
+					Setores
+				</ion-label>
+				<ion-select interface="alert" [(ngModel)]="solicitanteNew.setor_id" multiple="false" [selectOptions]="optionsSetor" name="setor">
+					<ion-option *ngFor="let x of setor" [value]="x.setor_id">{{ x.setor_sigla }}</ion-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item class="text-center">
+				<button ion-button type="submit" icon-end>
+					Cadastrar
+					<ion-icon name="person-add"></ion-icon>
+				</button>
+			</ion-item>
+		</form>
+	</div>
+
+    <div text-center *ngIf="pesquisa_usuario == 1">
+      <div class="spinner-border text-primary" role="status">
+      </div>
+      <strong>Carregando usuários...</strong>
+    </div>
+    <div *ngIf="pesquisa_usuario == 2">
+      <ion-item text-center>Sem resultados</ion-item>
+    </div>
+    <ion-item *ngFor="let x of solicitante" (click)="adicionarSolicitante(x)">
+			{{x.solicitante_nome }} - {{ x.orgao_sigla }}
+		</ion-item>
+    <ion-item *ngIf="usuario_selecionado">
+      <strong>Usuário selecionado: </strong>{{usuario_selecionado.solicitante_nome}}
+    </ion-item>
+    <!--<button ion-button rounded icon-right text-center>
+    	Cadastrar novo solicitante 
+    	<ion-icon name="person-add"></ion-icon>
+    </button> -->
 </ion-content>
