@@ -12,20 +12,48 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button full color="secondary" (click)="pageNovaMovimentacao()" icon-end>    
-    Nova movimentação
-    <ion-icon name="add-circle" color="primary"></ion-icon>
-  </button>
-  <button ion-button full color="secondary" (click)="pageMovimentacoes()" icon-end>
-    Ver movimentações
-    <ion-icon name="checkbox" color="primary"></ion-icon>
-  </button>
- <button ion-button full color="secondary" (click)="pageEquipamentos()" icon-end>
-   Ver equipamentos
-   <ion-icon name="add-circle" color="primary"></ion-icon>
- </button>
- <button ion-button full color="danger" (click)="pageUsuarios()" icon-end>
-   Ver usuarios
-   <ion-icon name="add-circle" color="primary"></ion-icon>
- </button>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button full color="secondary" (click)="pageNovaMovimentacao()" icon-end>    
+          Nova movimentação
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full (click)="pageMovimentacoes()" icon-end>
+          Visualizar movimentações
+          <ion-icon name="swap"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full color="secondary" (click)="pageNovoEquipamento()" icon-end>
+          Cadastrar equipamento
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full (click)="pageEquipamentos()" icon-end>
+          Visualizar equipamentos
+          <ion-icon name="laptop"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full color="secondary" (click)="pageNovoUsuario()" icon-end>
+          Cadastrar usuário
+          <ion-icon name="person-add"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+          <button ion-button full (click)="pageUsuarios()" icon-end>
+            Visualizar usuarios
+            <ion-icon name="person"></ion-icon>
+          </button>
+      </ion-col>
+   </ion-row>
+ </ion-grid>
 </ion-content>

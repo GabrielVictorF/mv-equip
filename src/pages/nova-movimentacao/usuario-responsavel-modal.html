@@ -1,10 +1,5 @@
 <ion-header>
 	<ion-navbar>
-		<ion-buttons left>
-			<button ion-button icon-only color="secondary">
-				<ion-icon name="person-add"></ion-icon>
-    </button>
-		</ion-buttons>
 		<ion-buttons right>
 			<button ion-button icon-only (click)="dismissModal()">
 				<ion-icon name="close"></ion-icon>
@@ -16,9 +11,9 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="bg-gradient-success">
 	<ion-item text-center>
-  		<ion-searchbar placeholder="Usuário responsável"
+  		<ion-searchbar placeholder="Solicitante responsável"
   			(ionInput)="pesquisaUsuario($event)"></ion-searchbar>
   			OU <a data-toggle="collapse" href="#cadastro" aria-expanded="false" aria-controls="cadastro">cadastre um novo solicitante</a>
   	</ion-item>

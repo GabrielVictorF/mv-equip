@@ -166,7 +166,7 @@ export class SolicitanteResponsavel {
     }
   }
 
-  postSolicitante() {
+  postSolicitante() { // Cadastro de novo solicitante
     this.api.postSolicitante(this.solicitanteNew).subscribe(res => {
       this.solicitante_selecionado = res;
       this.functions.showToast("Solicitante cadastrado com sucesso!");
@@ -175,5 +175,6 @@ export class SolicitanteResponsavel {
 
   adicionarSolicitante(solicitanteSelecionado) {
     this.solicitante_selecionado = solicitanteSelecionado;
+    this.dismissModal();
   }
 }
