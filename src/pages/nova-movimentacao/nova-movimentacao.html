@@ -36,11 +36,20 @@
   	</ion-item>
   	<ion-item *ngIf="emprestimo.tipo_emprestimo == 'E'">
   		<ion-label stacked>
-  			Orgão do usuário
+  			Orgão destino
   			<ion-icon name="calculator"></ion-icon>
   		</ion-label>
   		<ion-input type="text" name="orgao"></ion-input>
   	</ion-item>
+    <ion-item *ngIf="emprestimo.tipo_emprestimo == 'I'">
+    <ion-label stacked>
+      Localizacao
+    </ion-label>
+    <ion-select interface="alert"  multiple="false">
+      <ion-item>teste</ion-item>
+      <ion-option>2 andar</ion-option>
+    </ion-select>
+  </ion-item>
   	<ion-item>
   		<ion-label>
   			Data de empréstimo

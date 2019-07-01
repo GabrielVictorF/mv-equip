@@ -66,10 +66,20 @@ export class NovaMovimentacaoPage {
 	}
 
 	adicionarEquipamento(equipamentoSelecionado) {
-		this.emprestimo.equipamento_id.push(equipamentoSelecionado.equipamento_id);
-		this.equipamentos_selecionados.push(equipamentoSelecionado);
-		console.log("EQUIPAMENTO ADICIONADO");
-		console.log(this.equipamentos_selecionados);
+    let mapeamento;
+    this.equipamentos_selecionados.map(res => {
+      if (equipamentoSelecionado.equipamento_id == res.equipamento_id) {
+        this.functions.showToast("Não é possível selecionar o mesmo equipamento mais de uma vez!");
+        mapeamento = true;
+        return false;
+      }
+    });
+      if (!mapeamento) {
+  		this.emprestimo.equipamento_id.push(equipamentoSelecionado.equipamento_id);
+  		this.equipamentos_selecionados.push(equipamentoSelecionado);
+  		console.log("EQUIPAMENTO ADICIONADO");
+  		console.log(this.equipamentos_selecionados);
+   }
 	}
 
 	deletar(index) {
