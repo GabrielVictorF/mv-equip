@@ -16,6 +16,7 @@ import { NovoEquipamentoPage } from '../pages/novo-equipamento/novo-equipamento'
 import { DetalhePage } from '../pages/detalhe/detalhe';
 import { LoginPage } from '../pages/login/login';
 import { UsuariosPage } from '../pages/usuarios/usuarios';
+import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
 
 import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
@@ -35,6 +36,7 @@ import { MenuComponent } from '../components/menu/menu';
     DetalhePage,
     LoginPage,
     UsuariosPage,
+    CadastroUsuarioPage,
     MenuComponent
   ],
   imports: [
@@ -54,7 +56,8 @@ import { MenuComponent } from '../components/menu/menu';
     NovoEquipamentoPage,
     DetalhePage,
     LoginPage,
-    UsuariosPage
+    UsuariosPage,
+    CadastroUsuarioPage
   ],
   providers: [
     StatusBar,

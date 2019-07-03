@@ -5,6 +5,7 @@ import { NovaMovimentacaoPage } from '../nova-movimentacao/nova-movimentacao';
 import { MovimentacoesPage } from '../movimentacoes/movimentacoes';
 import { EquipamentosPage } from '../equipamentos/equipamentos';
 import { UsuariosPage } from '../usuarios/usuarios';
+import { CadastroUsuarioPage } from '../cadastro-usuario/cadastro-usuario';
 
 @Component({
   selector: 'page-home',
@@ -37,11 +38,16 @@ export class HomePage {
   pageUsuarios() {
     this.navCtrl.push(UsuariosPage);
   }
+
+  pageNovoUsuario() {
+    this.navCtrl.push(CadastroUsuarioPage);
+  }
 }
 
 @Component({
   templateUrl: 'modal.html'
 })
+
 export class Profile {
 
  constructor(public viewCtrl: ViewController) {
