@@ -37,6 +37,9 @@ export class UsuariosPage {
 	private resultado;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   				public api: ApiProvider, public functions: FunctionsProvider) {
+    this.api.getAllUsuarios().subscribe(res => {
+      this.resultado = res;
+    });
       this.api.getOrgaosExternos().subscribe(res => {
         this.orgao = res;
         console.log(this.orgao)

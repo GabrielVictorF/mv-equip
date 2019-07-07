@@ -24,9 +24,8 @@ export class CadastroUsuarioPage {
 		setor_id: null
 	}
 	private optionsOrgao = {
-    title: 'Órgãos externos',
-    subtitle: '',
-    mode: 'ios'
+    title: 'Órgãos',
+    subtitle: 'Teste'
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider,

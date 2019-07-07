@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-	private url = "http://172.30.90.17:8080";
+	private url = "http://192.168.0.3:8080";
 	private httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -57,6 +57,11 @@ export class ApiProvider {
 
   public getOrgaosExternos() {
     let url = this.url + '/mv_equip/public/orgao?_orgao_id=$ne.2&_order=orgao_sigla'; //Retorna os orgaos externos em ordem alfalbética 
+    return this.http.get(url, this.httpOptions);
+  }
+
+  public getAllUsuarios() {
+    let url = this.url + '/mv_equip/public/solicitante?_order=orgao_id';
     return this.http.get(url, this.httpOptions);
   }
 
