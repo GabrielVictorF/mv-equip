@@ -40,10 +40,9 @@ export class UsuariosPage {
     this.api.getAllUsuarios().subscribe(res => {
       this.resultado = res;
     });
-      this.api.getOrgaosExternos().subscribe(res => {
+    this.api.getOrgaosExternos().subscribe(res => {
         this.orgao = res;
-        console.log(this.orgao)
-      });
+    });
   	this.api.getSetores().subscribe(res => {
   		this.setor = res;
   		console.log(res)
@@ -57,13 +56,10 @@ export class UsuariosPage {
   }
 
   getPesquisa() {
-  	console.log(this.pesquisa)
-    if (this.pesquisa.tipo == 'E') {
        this.api.getUsuariosExternos(this.pesquisa.orgao_id).subscribe(res => {
          this.resultado = res;
          console.log(res)
        });
-    } 
   	/*this.api.getPesquisaFullUsuario().subscribe(res => {
   		this.resultado = res;	
   		console.log(res)

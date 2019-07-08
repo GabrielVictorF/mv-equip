@@ -61,7 +61,7 @@ export class ApiProvider {
   }
 
   public getAllUsuarios() {
-    let url = this.url + '/mv_equip/public/solicitante?_order=orgao_id';
+    let url = this.url + '/mv_equip/public/solicitante?_join=left:orgao:solicitante.solicitante_id:$eq:orgao.orgao_id';
     return this.http.get(url, this.httpOptions);
   }
 

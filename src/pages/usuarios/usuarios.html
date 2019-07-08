@@ -13,15 +13,14 @@
 <ion-content padding>
 	<ion-item>
 		<ion-label stacked>
-			Tipo de usuário
+			Órgão do usuário
 		</ion-label>
-		<ion-select interface="popover" [(ngModel)]="pesquisa.tipo">
-			<ion-option value="I">Usuários internos</ion-option>
-			<ion-option value="E">Usuários Externos</ion-option>
+		<ion-select interface="popover" [(ngModel)]="pesquisa.orgao_id">
+			<ion-option *ngFor="let x of orgao" [value]="x.orgao_id">{{x.orgao_sigla}}</ion-option>
 		</ion-select>
 	</ion-item>
 	
-	<ion-item *ngIf="pesquisa.tipo == 'I'">
+	<ion-item *ngIf="pesquisa.orgao_id == 2">
 		<ion-label stacked>
 			Setores
 		</ion-label>
@@ -32,7 +31,7 @@
 
 	<ion-item *ngIf="pesquisa.tipo == 'E'">
 		<ion-label stacked>
-			Òrgãos externos
+			Òrgãos
 		</ion-label>
 		<ion-select interface="alert" [(ngModel)]="pesquisa.orgao_id" multiple="true" [selectOptions]="optionsOrgao">
 			<ion-option *ngFor="let x of orgao" [value]="x.orgao_id">{{ x.orgao_sigla }}</ion-option>
@@ -47,5 +46,6 @@
 	</ion-item>
 	<ion-item *ngFor="let x of resultado">
 		<strong>Usuário: </strong>{{ x.solicitante_nome }}
+		<strong>Órgão: </strong>{{ x.orgao_sigla }}
 	</ion-item>
 </ion-content>
