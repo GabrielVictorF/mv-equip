@@ -20,11 +20,12 @@ export class NovaMovimentacaoPage {
 	public emprestimo = {
     emprestimo_id: null,
     equipamento_id: [],
-  	data_emprestimo: this.functions.getTimezone(),
-  	data_devolucao: this.functions.getTimezone(),
+  	data_emprestimo: new Date().toISOString(),
+  	data_devolucao: new Date().toISOString(), 
   	observacao: '',
   	solicitante_id: null,
-  	tipo_emprestimo: 'I'
+    tipo_emprestimo: 'I',
+    localizacao_id: null
   }
 	private equipamentos = []; //Searchbar
   private usuario_orgao;
@@ -34,11 +35,15 @@ export class NovaMovimentacaoPage {
   private statusLoadingEquip = false;
   private semResultadosEquip = false;
   private modal;
+  private locais;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public api: ApiProvider, public functions: FunctionsProvider,
               public modalCtrl: ModalController) {
-  	console.log(this.emprestimo)
+                this.api.getLocalizacoes().subscribe(res => {
+                  this.locais = res;
+                  console.log(res)
+                }, Error => console.log(Error));
   }
 
   ionViewDidLoad() {

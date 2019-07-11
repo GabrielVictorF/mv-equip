@@ -45,9 +45,8 @@
     <ion-label stacked>
       Localizacao
     </ion-label>
-    <ion-select interface="alert"  multiple="false">
-      <ion-item>teste</ion-item>
-      <ion-option>2 andar</ion-option>
+    <ion-select interface="alert"  multiple="false" [(ngModel)]="emprestimo.localizacao_id" name="localizacao">
+      <ion-option *ngFor="let x of locais" [value]="x.localizacao_id">{{x.localizacao_nome}}</ion-option>
     </ion-select>
   </ion-item>
   	<ion-item>
@@ -55,7 +54,7 @@
   			Data de empréstimo
   			<ion-icon name="calendar"></ion-icon>
   		</ion-label>
-  		<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm"
+  		<ion-datetime pickerFormat="DD-MMMM-YYYY"
         monthNames="{{functions.mesNomes}}"
         monthShortNames="{{functions.mesShort}}"
         cancelText="Cancelar" doneText="Feito" placeholder="Data da movimentação"
@@ -67,7 +66,7 @@
   			Data de devolução
   			<ion-icon name="calendar"></ion-icon>
   		</ion-label>
-    	<ion-datetime pickerFormat="DD-MMMM-YYYY HH:mm"
+    	<ion-datetime pickerFormat="DD-MMMM-YYYY"
       monthNames="{{functions.mesNomes}}" monthShortNames="{{functions.mesShort}}" cancelText="Cancelar" doneText="Feito" placeholder="Data de devolução"  [(ngModel)]="emprestimo.data_devolucao" name="data_devolucao"
       ></ion-datetime>
   	</ion-item>
