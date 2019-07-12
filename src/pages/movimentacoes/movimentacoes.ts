@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 
+import { EditarPage } from '../editar/editar';
+
 /**
  * Generated class for the MovimentacoesPage page.
  *
@@ -15,12 +17,18 @@ import { ApiProvider } from '../../providers/api/api';
   templateUrl: 'movimentacoes.html',
 })
 export class MovimentacoesPage {
-
+  private emprestimos;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   			public api: ApiProvider) {
+          this.api.getEmpMovimentacoesPage().subscribe(res => {this.emprestimos = res});
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MovimentacoesPage');
+  }
+
+  editarPage(emprestimoId) {
+    console.log(emprestimoId)
+    this.api.getEmprestimos(emprestimoId).subscribe(res => this.navCtrl.push(EditarPage, {'data': res}));
   }
 }

@@ -94,7 +94,21 @@ export class ApiProvider {
 
   public getLocalizacoes() {
     let url = this.url + '/mv_equip/public/localizacao';
-    console.log(url)
+    console.log(url);
     return this.http.get(url, this.httpOptions);
   }
+
+  public getEmprestimos(emprestimo_id?) {
+    let url = this.url + '/mv_equip/public/emprestimo';
+    if (emprestimo_id)
+      url += '?emprestimo_id=' + emprestimo_id;
+    
+    return this.http.get(url, this.httpOptions);
+  }
+
+  public getEmpMovimentacoesPage() {
+    let url = this.url + '/_QUERIES/get/emprestimo-page';
+    return this.http.get(url, this.httpOptions);
+  }
+
 }

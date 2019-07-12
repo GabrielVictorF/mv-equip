@@ -17,6 +17,7 @@ import { DetalhePage } from '../pages/detalhe/detalhe';
 import { LoginPage } from '../pages/login/login';
 import { UsuariosPage } from '../pages/usuarios/usuarios';
 import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
+import { EditarPage } from '../pages/editar/editar';
 
 import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
@@ -37,7 +38,8 @@ import { MenuComponent } from '../components/menu/menu';
     LoginPage,
     UsuariosPage,
     CadastroUsuarioPage,
-    MenuComponent
+    MenuComponent,
+    EditarPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { MenuComponent } from '../components/menu/menu';
     DetalhePage,
     LoginPage,
     UsuariosPage,
-    CadastroUsuarioPage
+    CadastroUsuarioPage,
+    EditarPage
   ],
   providers: [
     StatusBar,
