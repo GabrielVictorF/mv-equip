@@ -27,8 +27,7 @@ export class MovimentacoesPage {
     console.log('ionViewDidLoad MovimentacoesPage');
   }
 
-  editarPage(emprestimoId) {
-    console.log(emprestimoId)
-    this.api.getEmprestimos(emprestimoId).subscribe(res => this.navCtrl.push(EditarPage, {'data': res}));
+  editarPage(itemSelecionado) {
+    this.navCtrl.push(EditarPage, {'data': itemSelecionado});
   }
 }
