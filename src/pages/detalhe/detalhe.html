@@ -6,14 +6,38 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ equipamento.equipamento_tomb }}</ion-title>
+    <ion-title>Detalhe</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-	<ion-item><strong>Tombamento:</strong> {{ equipamento.equipamento_tomb }}</ion-item>
+<ion-content padding *ngIf="detalhe == 'equipamento'">
+	<!--<ion-item><strong>Tombamento:</strong> {{ equipamento.equipamento_tomb }}</ion-item>
 	<ion-item><strong>Descrição:</strong> {{ equipamento.equipamento_descricao }}</ion-item>
 
 	<button ion-button full rounded>Nova movimentação para esse equipamento</button>
-	<button ion-button full rounded>Ver movimentações deste equipamento</button>
+	<button ion-button full rounded>Ver movimentações deste equipamento</button> -->
+</ion-content>
+
+<ion-content padding *ngIf="detalhe == 'emprestimo'">
+  <ion-item>
+    <strong>Data de empréstimo:</strong>  {{ data.data_emprestimo }}
+  </ion-item>
+  <ion-item>
+      <strong>Data de devolucao:</strong>  {{ data.data_devolucao }}
+  </ion-item>
+  <ion-item>
+    <strong>Observação:</strong> {{ data.observacao }}
+  </ion-item>
+    <ion-item><strong>Destino:</strong> 
+      <span *ngIf="data.localizacao_nome">{{ data.localizacao_nome}}</span>
+      <span *ngIf="data.orgao_sigla">{{ data.orgao_sigla }}</span>
+  </ion-item>
+
+  <ion-item>
+    <strong>Solicitante:</strong> {{ data.solicitante_nome }}
+  </ion-item>
+  
+  <ion-item>
+    <button ion-button full (click)="putEmprestimo()">Editar instância</button>
+  </ion-item>
 </ion-content>

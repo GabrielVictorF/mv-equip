@@ -11,8 +11,17 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-item>
-        <ion-label>
+        <ion-item>
+            <ion-label stacked>
+              Tipo de movimentação
+            </ion-label>
+            <ion-select [(ngModel)]="data.tipo_emprestimo" cancelText="cancelar" interface="popover" name="tipo">
+              <ion-option value="I">Interna</ion-option>
+              <ion-option value="E">Externa</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+          <ion-label>
           Data de empréstimo
           <ion-icon name="calendar"></ion-icon>
         </ion-label>
@@ -33,7 +42,17 @@
           placeholder="Data de devolução"  [(ngModel)]="data.data_devolucao" name="data_devolucao"
           ></ion-datetime>
         </ion-item>
-
+        <ion-item>
+          <ion-label>
+            Observação
+            <ion-icon name="add"></ion-icon>
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="data.observacao" placeholder="Observação acerca da movimentação"
+            name="observacao"></ion-input>
+        </ion-item>
+        <ion-item>
+            <button ion-button full (click)="atualizarEmprestimo()">Atualizar empréstimo</button>
+          </ion-item>
         <ion-item>
           <button ion-button full (click)="excluirEmprestimo()">Excluir empréstimo</button>
         </ion-item>

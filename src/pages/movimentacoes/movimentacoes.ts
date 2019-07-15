@@ -4,6 +4,8 @@ import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
 
 import { EditarPage } from '../editar/editar';
+import { NovaMovimentacaoPage } from '../nova-movimentacao/nova-movimentacao';
+import { DetalhePage } from '../detalhe/detalhe';
 
 @IonicPage()
 @Component({
@@ -29,6 +31,6 @@ export class MovimentacoesPage {
   }
 
   editarPage(itemSelecionado) {
-    this.navCtrl.push(EditarPage, {'data': itemSelecionado});
+    this.navCtrl.push(DetalhePage, {'data': itemSelecionado, 'detalhe': 'emprestimo'});
   }
 }

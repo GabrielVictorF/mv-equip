@@ -36,4 +36,8 @@ export class EditarPage {
       this.functions.showToast
     })
   }
+
+  atualizarEmprestimo() {
+    this.api.putEmprestimo(this.data).subscribe(() => {this.functions.showToast('Empréstimo atualizado!')})
+  }
 }

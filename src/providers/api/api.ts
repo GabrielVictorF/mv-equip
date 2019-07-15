@@ -116,4 +116,20 @@ export class ApiProvider {
     let url = this.url + '/mv_equip/public/emprestimo?emprestimo_id=' + emprestimoId;
     return this.http.delete(url);
   }
+
+  public putEmprestimo(emprestimo) {
+    let body = {
+      data_emprestimo: emprestimo.data_emprestimo,
+      data_devolucao: emprestimo.data_devolucao,
+      observacao: emprestimo.observacao,
+      emprestimo_id: emprestimo.emprestimo_id,
+      equipamento_id: emprestimo.equipamento_id,
+      tipo_emprestimo: emprestimo.tipo_emprestimo,
+      solicitante_id: emprestimo.solicitante_id,
+      localizacao_id: emprestimo.localizacao_id
+    }
+    console.log(body)
+    let url = this.url + '/mv_equip/public/emprestimo?emprestimo_id=' + emprestimo.emprestimo_id;
+    return this.http.put(url, body, this.httpOptions);
+  }
 }

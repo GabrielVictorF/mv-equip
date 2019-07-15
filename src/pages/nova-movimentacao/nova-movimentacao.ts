@@ -4,12 +4,6 @@ import { IonicPage, NavController, NavParams,
 
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
-/**
- * Generated class for the NovaMovimentacaoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -17,15 +11,7 @@ import { FunctionsProvider } from '../../providers/functions/functions';
   templateUrl: 'nova-movimentacao.html',
 })
 export class NovaMovimentacaoPage {
-	public emprestimo = {
-    equipamento_id: [],
-  	data_emprestimo: new Date().toISOString(),
-  	data_devolucao: new Date().toISOString(), 
-  	observacao: '',
-  	solicitante_id: null,
-    tipo_emprestimo: 'I',
-    localizacao_id: null
-  }
+	public emprestimo;
 	private equipamentos = []; //Searchbar
   private usuario_orgao;
 	private equipamentos_selecionados = []; //Selecionados para movimentação
@@ -35,10 +21,24 @@ export class NovaMovimentacaoPage {
   private semResultadosEquip = false;
   private modal;
   private locais;
+  private acao = this.navParams.get('acao');
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public api: ApiProvider, public functions: FunctionsProvider,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController, public events: Events) {
+                if (this.acao) {
+                  this.emprestimo = this.navParams.get('data'); 
+                } else {
+                  this.emprestimo = {
+                    equipamento_id: [],
+                    data_emprestimo: new Date().toISOString(),
+                    data_devolucao: new Date().toISOString(), 
+                    observacao: '',
+                    solicitante_id: null,
+                    tipo_emprestimo: 'I',
+                    localizacao_id: null
+                }
+                }
                 this.api.getLocalizacoes().subscribe(res => {
                   this.locais = res;
                   console.log(res)
@@ -93,18 +93,34 @@ export class NovaMovimentacaoPage {
   		console.log(this.equipamentos_selecionados);
 	}
 
-  postEmprestimo() {
-    console.log(this.emprestimo)
-    this.emprestimo.data_emprestimo = this.functions.formataData(this.emprestimo.data_emprestimo);
-    this.emprestimo.data_devolucao = this.functions.formataData(this.emprestimo.data_devolucao);
-    console.log(this.emprestimo)
+  postEmprestimo() { //POST and PUT
     this.statusNewMo = 'spinner-border spinner-border-sm';
-    this.api.postEmprestimo(this.emprestimo).subscribe(res => {
-      this.statusNewMo = '';
-      console.log(res);
-    }, Error => {
-      this.statusNewMo = '';
-    })
+
+    if (this.acao) {
+      this.api.putEmprestimo(this.emprestimo).subscribe(() => {
+        this.statusNewMo = '';
+        this.functions.showToast('Empréstimo atualizado!');
+      }, Error => {
+        this.statusNewMo = '';
+      })
+    } else {
+      this.api.postEmprestimo(this.emprestimo).subscribe(res => {
+        this.statusNewMo = '';
+        console.log(res);
+      }, Error => {
+        this.statusNewMo = '';
+      })
+    }
+  }
+
+  deleteEmprestimo() {
+      this.api.deleteEmprestimo(this.emprestimo.emprestimo_id).subscribe(res => {
+        this.events.publish('emprestimoExcluido');
+        this.navCtrl.pop();
+        this.functions.showToast('Empréstimo excluído');
+      }, Error => {
+        this.functions.showToast('Erro ao excluir empréstimo!');
+      })
   }
 
   solicitanteModal() {

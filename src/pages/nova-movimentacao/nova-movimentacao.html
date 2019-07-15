@@ -1,6 +1,7 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Nova movimentação</ion-title>
+	<ion-title *ngIf="!acao">Nova movimentação</ion-title>
+	<ion-title *ngIf="acao == 'edit'">Editar empréstimo</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -88,4 +89,7 @@
       </button>
     </ion-item>
   </form>
+  <ion-item *ngIf="acao">
+	  <button full ion-button color="danger" (click)="deleteEmprestimo()">Deletar</button>
+  </ion-item>
 </ion-content>
