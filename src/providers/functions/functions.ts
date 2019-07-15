@@ -25,14 +25,12 @@ export class FunctionsProvider {
   	}); toast.present();
   }
 
-  public formataData() { //DD-MMMM-YYYY HH: MM
-    var todayTime = new Date();
-    var month = this.mesNomes[todayTime.getMonth() + 1];
-    var day = todayTime.getDate();
-    var year = todayTime.getFullYear();
-    var hour = todayTime.getHours();
-    var minute = todayTime.getMinutes();
-    return day + "-" + month + "-" + year + ' ' + hour + ':' + minute;
+  public formataData(data) { //YYYY-MM-DD
+    var date = new Date(data);
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var year = date.getFullYear();
+    return year + "-" + month + "-" + day;
   }
 
   public getTimezone() { //Transform date to Brazil GMT

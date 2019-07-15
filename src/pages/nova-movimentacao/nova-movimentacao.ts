@@ -18,7 +18,6 @@ import { FunctionsProvider } from '../../providers/functions/functions';
 })
 export class NovaMovimentacaoPage {
 	public emprestimo = {
-    emprestimo_id: null,
     equipamento_id: [],
   	data_emprestimo: new Date().toISOString(),
   	data_devolucao: new Date().toISOString(), 
@@ -95,6 +94,9 @@ export class NovaMovimentacaoPage {
 	}
 
   postEmprestimo() {
+    console.log(this.emprestimo)
+    this.emprestimo.data_emprestimo = this.functions.formataData(this.emprestimo.data_emprestimo);
+    this.emprestimo.data_devolucao = this.functions.formataData(this.emprestimo.data_devolucao);
     console.log(this.emprestimo)
     this.statusNewMo = 'spinner-border spinner-border-sm';
     this.api.postEmprestimo(this.emprestimo).subscribe(res => {
