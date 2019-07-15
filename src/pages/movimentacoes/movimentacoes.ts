@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, LoadingController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
+import { FunctionsProvider } from '../../providers/functions/functions';
 
 import { EditarPage } from '../editar/editar';
-
-/**
- * Generated class for the MovimentacoesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,13 +12,20 @@ import { EditarPage } from '../editar/editar';
 })
 export class MovimentacoesPage {
   private emprestimos;
+  public load;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  			public api: ApiProvider) {
-          this.api.getEmpMovimentacoesPage().subscribe(res => {this.emprestimos = res});
+        public api: ApiProvider, public events: Events, public functions: FunctionsProvider,
+        public loading: LoadingController) {
+          this.events.subscribe('emprestimoExcluido', () => this.getEmprestimos());
+          this.getEmprestimos();          
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MovimentacoesPage');
+  getEmprestimos() {
+    this.load = this.loading.create({
+      content: 'Obtendo empréstimos...'
+    }); this.load.present();
+    this.api.getEmpMovimentacoesPage().subscribe(res => {this.emprestimos = res, this.load.dismiss()});
   }
 
   editarPage(itemSelecionado) {

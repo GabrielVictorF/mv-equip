@@ -33,4 +33,8 @@
           placeholder="Data de devolução"  [(ngModel)]="data.data_devolucao" name="data_devolucao"
           ></ion-datetime>
         </ion-item>
+
+        <ion-item>
+          <button ion-button full (click)="excluirEmprestimo()">Excluir empréstimo</button>
+        </ion-item>
 </ion-content>
