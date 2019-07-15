@@ -79,7 +79,7 @@ export class NovaMovimentacaoPage {
       }
     });
       if (!mapeamento) {
-  		this.emprestimo.equipamento_id.push(equipamentoSelecionado.equipamento_id);
+  		this.emprestimo.equipamento_id.push(equipamentoSelecionado.equipamento_id.toString());
   		this.equipamentos_selecionados.push(equipamentoSelecionado);
   		console.log("EQUIPAMENTO ADICIONADO");
   		console.log(this.equipamentos_selecionados);
@@ -95,6 +95,8 @@ export class NovaMovimentacaoPage {
 
   postEmprestimo() { //POST and PUT
     this.statusNewMo = 'spinner-border spinner-border-sm';
+    this.emprestimo.equipamento_id[0].toString();
+    console.log(this.emprestimo)
 
     if (this.acao) {
       this.api.putEmprestimo(this.emprestimo).subscribe(() => {

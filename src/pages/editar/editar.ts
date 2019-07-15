@@ -33,7 +33,7 @@ export class EditarPage {
       this.navCtrl.pop();
       this.functions.showToast('Empréstimo excluído');
     }, Error => {
-      this.functions.showToast
+      this.functions.showToast('Erro ao excluir empréstimo!');
     })
   }
 

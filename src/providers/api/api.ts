@@ -72,7 +72,7 @@ export class ApiProvider {
 
 	public postEmprestimo(emprestimo) {
 		let url = this.url + '/mv_equip/public/emprestimo';
-		let body = emprestimo;
+    let body = emprestimo;
 		return this.http.post(url, body, this.httpOptions);
 	}
 

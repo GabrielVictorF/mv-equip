@@ -28,7 +28,15 @@
   <ion-item>
     <strong>Observação:</strong> {{ data.observacao }}
   </ion-item>
-    <ion-item><strong>Destino:</strong> 
+
+  <ion-item>
+    <strong>Equipamentos:</strong>
+    <ion-item *ngFor="let x of data.emprestimo">
+      {{ x.equipamento_tomb }} - {{ x.equipamento_descricao }}
+    </ion-item>
+  </ion-item>
+  
+  <ion-item><strong>Destino:</strong> 
       <span *ngIf="data.localizacao_nome">{{ data.localizacao_nome}}</span>
       <span *ngIf="data.orgao_sigla">{{ data.orgao_sigla }}</span>
   </ion-item>
