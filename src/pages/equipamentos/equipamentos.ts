@@ -75,6 +75,6 @@ export class EquipamentosPage {
   }
 
   pageDetalhe(equipamento) {
-    this.navCtrl.push(DetalhePage, {'equipamentoSelecionado': equipamento});
+    this.navCtrl.push(DetalhePage, {'data': equipamento,'detalhe': 'equipamento'});
   }
 }

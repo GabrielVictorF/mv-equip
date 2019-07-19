@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login';
 import { UsuariosPage } from '../pages/usuarios/usuarios';
 import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
 import { EditarPage } from '../pages/editar/editar';
+import { RelatoriosPage } from '../pages/relatorios/relatorios';
 
 import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
@@ -39,7 +40,8 @@ import { MenuComponent } from '../components/menu/menu';
     UsuariosPage,
     CadastroUsuarioPage,
     MenuComponent,
-    EditarPage
+    EditarPage,
+    RelatoriosPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,8 @@ import { MenuComponent } from '../components/menu/menu';
     LoginPage,
     UsuariosPage,
     CadastroUsuarioPage,
-    EditarPage
+    EditarPage,
+    RelatoriosPage
   ],
   providers: [
     StatusBar,

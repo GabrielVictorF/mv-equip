@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
 
+import { DetalhePage } from '../detalhe/detalhe';
+
 /**
  * Generated class for the UsuariosPage page.
  *
@@ -39,6 +41,7 @@ export class UsuariosPage {
   				public api: ApiProvider, public functions: FunctionsProvider) {
     this.api.getAllUsuarios().subscribe(res => {
       this.resultado = res;
+      console.log(this.resultado)
     });
     this.api.getOrgaosExternos().subscribe(res => {
         this.orgao = res;
@@ -59,10 +62,16 @@ export class UsuariosPage {
        this.api.getUsuariosExternos(this.pesquisa.orgao_id).subscribe(res => {
          this.resultado = res;
          console.log(res)
+       }, Error => {
+       
        });
   	/*this.api.getPesquisaFullUsuario().subscribe(res => {
   		this.resultado = res;	
   		console.log(res)
   	}, Error => console.log(Error));*/
+  }
+
+  detalhePage(itemSelecionado) {
+    this.navCtrl.push(DetalhePage, {'data': itemSelecionado, 'detalhe': 'solicitante'});
   }
 }

@@ -11,11 +11,11 @@
 </ion-header>
 
 <ion-content padding *ngIf="detalhe == 'equipamento'">
-	<!--<ion-item><strong>Tombamento:</strong> {{ equipamento.equipamento_tomb }}</ion-item>
-	<ion-item><strong>Descrição:</strong> {{ equipamento.equipamento_descricao }}</ion-item>
+	<ion-item><strong>Tombamento:</strong> {{ data.equipamento_tomb }}</ion-item>
+	<ion-item><strong>Descrição:</strong> {{ data.equipamento_descricao }}</ion-item>
 
 	<button ion-button full rounded>Nova movimentação para esse equipamento</button>
-	<button ion-button full rounded>Ver movimentações deste equipamento</button> -->
+	<button ion-button full rounded>Ver movimentações deste equipamento</button> 
 </ion-content>
 
 <ion-content padding *ngIf="detalhe == 'emprestimo'">
@@ -47,5 +47,11 @@
   
   <ion-item>
     <button ion-button full (click)="putEmprestimo()">Editar instância</button>
+  </ion-item>
+</ion-content>
+
+<ion-content *ngIf="detalhe == 'solicitante'">
+  <ion-item>
+    <strong>Nome:</strong> {{ data.solicitante_nome  }}
   </ion-item>
 </ion-content>

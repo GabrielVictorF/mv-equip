@@ -11,6 +11,9 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="getEmprestimos($event)">
+        <ion-refresher-content pullingText="Puxe para atualizar os resultados..." refreshingText="Atualizando..."></ion-refresher-content>
+      </ion-refresher>
   <div *ngFor="let x of emprestimos">
     <ion-item (click)="editarPage(x)">
         <ion-label>

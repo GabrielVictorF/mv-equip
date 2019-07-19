@@ -61,7 +61,7 @@ export class ApiProvider {
   }
 
   public getAllUsuarios() {
-    let url = this.url + '/mv_equip/public/solicitante?_join=left:orgao:solicitante.solicitante_id:$eq:orgao.orgao_id';
+    let url = this.url + '/_QUERIES/get/join-solicitante-orgao';
     return this.http.get(url, this.httpOptions);
   }
 
@@ -131,5 +131,15 @@ export class ApiProvider {
     console.log(body)
     let url = this.url + '/mv_equip/public/emprestimo?emprestimo_id=' + emprestimo.emprestimo_id;
     return this.http.put(url, body, this.httpOptions);
+  }
+
+  public getCountTipoEmprestimo() {
+    let url = this.url + '/_QUERIES/get/count-tipo-emprestimo';
+    return this.http.get(url, this.httpOptions);
+  }
+
+  public getCountSolicitanteEmprestimo() {
+    let url = this.url + '/_QUERIES/get/count-emprestimo-solicitante';
+    return this.http.get(url, this.httpOptions);
   }
 }

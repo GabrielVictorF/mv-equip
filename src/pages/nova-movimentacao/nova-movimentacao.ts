@@ -28,25 +28,23 @@ export class NovaMovimentacaoPage {
               public modalCtrl: ModalController, public events: Events) {
                 if (this.acao) {
                   this.emprestimo = this.navParams.get('data'); 
+                  console.log(this.emprestimo)
+                  
                 } else {
                   this.emprestimo = {
-                    equipamento_id: [],
+                    equipamento_id: [1],
                     data_emprestimo: new Date().toISOString(),
                     data_devolucao: new Date().toISOString(), 
                     observacao: '',
-                    solicitante_id: null,
+                    solicitante_id: 1,
                     tipo_emprestimo: 'I',
-                    localizacao_id: null
+                    localizacao_id: 1
                 }
                 }
                 this.api.getLocalizacoes().subscribe(res => {
                   this.locais = res;
                   console.log(res)
                 }, Error => console.log(Error));
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NovaMovimentacaoPage');
   }
 
   pesquisa(ev: any) { //Campo de pesquisa de
@@ -78,7 +76,7 @@ export class NovaMovimentacaoPage {
         return false;
       }
     });
-      if (!mapeamento) {
+      if (!mapeamento) { 
   		this.emprestimo.equipamento_id.push(equipamentoSelecionado.equipamento_id.toString());
   		this.equipamentos_selecionados.push(equipamentoSelecionado);
   		console.log("EQUIPAMENTO ADICIONADO");
@@ -95,7 +93,7 @@ export class NovaMovimentacaoPage {
 
   postEmprestimo() { //POST and PUT
     this.statusNewMo = 'spinner-border spinner-border-sm';
-    this.emprestimo.equipamento_id[0].toString();
+    //this.emprestimo.equipamento_id[0].toString();
     console.log(this.emprestimo)
 
     if (this.acao) {

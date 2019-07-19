@@ -6,6 +6,7 @@ import { MovimentacoesPage } from '../movimentacoes/movimentacoes';
 import { EquipamentosPage } from '../equipamentos/equipamentos';
 import { UsuariosPage } from '../usuarios/usuarios';
 import { CadastroUsuarioPage } from '../cadastro-usuario/cadastro-usuario';
+import { RelatoriosPage } from '../relatorios/relatorios';
 
 @Component({
   selector: 'page-home',
@@ -41,6 +42,10 @@ export class HomePage {
 
   pageNovoUsuario() {
     this.navCtrl.push(CadastroUsuarioPage);
+  }
+
+  pageRelatorios() {
+    this.navCtrl.push(RelatoriosPage);
   }
 }
 

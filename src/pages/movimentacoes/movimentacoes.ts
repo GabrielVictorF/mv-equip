@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, LoadingController, AlertController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
 
@@ -18,16 +18,34 @@ export class MovimentacoesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
         public api: ApiProvider, public events: Events, public functions: FunctionsProvider,
-        public loading: LoadingController) {
-          this.events.subscribe('emprestimoExcluido', () => this.getEmprestimos());
-          this.getEmprestimos();          
+        public loading: LoadingController, public alertCtrl: AlertController) {
+          this.events.subscribe('emprestimoExcluido', () => {
+            this.getEmprestimos()
+        }
+      ); 
+      this.getEmprestimos();      
   }
 
-  getEmprestimos() {
+  getEmprestimos(refreshEvent?) {
     this.load = this.loading.create({
       content: 'Obtendo empréstimos...'
     }); this.load.present();
-    this.api.getEmpMovimentacoesPage().subscribe(res => {this.emprestimos = res, this.load.dismiss()});
+    if (refreshEvent)
+    refreshEvent.complete();
+    this.api.getEmpMovimentacoesPage().subscribe(res => {
+      this.emprestimos = res, 
+      this.load.dismiss()
+    }, Error => {
+      if (refreshEvent)
+      refreshEvent.complete();
+      this.load.dismiss();
+      let alert = this.alertCtrl.create({
+        title: 'Erro!',
+        subTitle: 'Erro ao obter empréstimos, tente novamente em breve.',
+        buttons: ['OK']
+      })
+      alert.present();
+    });
   }
 
   editarPage(itemSelecionado) {
