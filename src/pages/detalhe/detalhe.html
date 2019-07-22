@@ -15,7 +15,8 @@
 	<ion-item><strong>Descrição:</strong> {{ data.equipamento_descricao }}</ion-item>
 
 	<button ion-button full rounded>Nova movimentação para esse equipamento</button>
-	<button ion-button full rounded>Ver movimentações deste equipamento</button> 
+  <button ion-button full rounded>Ver movimentações deste equipamento</button>
+  <button ion-button full rounded (click)="deletarEquip()">Deletar equipamento</button>
 </ion-content>
 
 <ion-content padding *ngIf="detalhe == 'emprestimo'">

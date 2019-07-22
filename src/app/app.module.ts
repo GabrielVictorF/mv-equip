@@ -19,6 +19,7 @@ import { UsuariosPage } from '../pages/usuarios/usuarios';
 import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
 import { EditarPage } from '../pages/editar/editar';
 import { RelatoriosPage } from '../pages/relatorios/relatorios';
+import { CadastroEquipamentoPage } from '../pages/cadastro-equipamento/cadastro-equipamento';
 
 import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
@@ -41,7 +42,8 @@ import { MenuComponent } from '../components/menu/menu';
     CadastroUsuarioPage,
     MenuComponent,
     EditarPage,
-    RelatoriosPage
+    RelatoriosPage,
+    CadastroEquipamentoPage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { MenuComponent } from '../components/menu/menu';
     UsuariosPage,
     CadastroUsuarioPage,
     EditarPage,
-    RelatoriosPage
+    RelatoriosPage,
+    CadastroEquipamentoPage
   ],
   providers: [
     StatusBar,

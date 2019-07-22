@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, App } from 'ionic-angular';
 
 import { NovoEquipamentoPage } from '../novo-equipamento/novo-equipamento';
 import { DetalhePage } from '../detalhe/detalhe';
@@ -25,8 +25,10 @@ export class EquipamentosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   			public api: ApiProvider, public functions: FunctionsProvider,
-        public loadingCtrl: LoadingController) {
-  		this.getEquipamentos();
+        public loadingCtrl: LoadingController, public events: Events,
+        public app: App) {
+      this.getEquipamentos();
+      this.events.subscribe('deleteEquip', () => this.getEquipamentos());
   }
 
   ionViewDidLoad() {

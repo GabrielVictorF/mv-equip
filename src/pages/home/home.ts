@@ -7,6 +7,7 @@ import { EquipamentosPage } from '../equipamentos/equipamentos';
 import { UsuariosPage } from '../usuarios/usuarios';
 import { CadastroUsuarioPage } from '../cadastro-usuario/cadastro-usuario';
 import { RelatoriosPage } from '../relatorios/relatorios';
+import { CadastroEquipamentoPage } from '../cadastro-equipamento/cadastro-equipamento';
 
 @Component({
   selector: 'page-home',
@@ -46,6 +47,10 @@ export class HomePage {
 
   pageRelatorios() {
     this.navCtrl.push(RelatoriosPage);
+  }
+
+  pageNovoEquipamento() {
+    this.navCtrl.push(CadastroEquipamentoPage);
   }
 }
 

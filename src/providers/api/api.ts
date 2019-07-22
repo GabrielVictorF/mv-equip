@@ -28,9 +28,8 @@ export class ApiProvider {
 
   public postEquipamento(equipamento) {
   	let url = this.url + '/mv_equip/public/equipamento';
-  	let body = equipamento;
-    console.log(body);
-  	return this.http.post(url, body, this.httpOptions);
+    console.log(equipamento);
+  	return this.http.post(url, equipamento, this.httpOptions);
   }
 
   public postSolicitante(solicitante) {
@@ -117,6 +116,11 @@ export class ApiProvider {
     return this.http.delete(url);
   }
 
+  public deleteEquipamento(equipamentoId) {
+    let url = this.url + '/mv_equip/public/equipamento?equipamento_id=' + equipamentoId;
+    return this.http.delete(url, this.httpOptions);
+  }
+
   public putEmprestimo(emprestimo) {
     let body = {
       data_emprestimo: emprestimo.data_emprestimo,
@@ -142,4 +146,6 @@ export class ApiProvider {
     let url = this.url + '/_QUERIES/get/count-emprestimo-solicitante';
     return this.http.get(url, this.httpOptions);
   }
+
+  public post
 }
