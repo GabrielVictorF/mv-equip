@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController} from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, App, Events } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 //import { CadastrarPage } from '../cadastrar/cadastrar';
@@ -25,7 +25,9 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public functions: FunctionsProvider,
     public loadingCtrl: LoadingController,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public events: Events) {
+      this.events.publish('disableMenu');
     this.formValida = this.formBuilder.group({
       login: ['', Validators.required],
       senha: ['', Validators.required],
@@ -33,11 +35,14 @@ export class LoginPage {
     this.image =  'https://3.bp.blogspot.com/-L5HsuL73E8M/Wse64xnft8I/AAAAAAAALdE/sEFacd6oj4E6QXUL78HIj9f1pz78N5GxQCLcBGAs/s320/001.JPG'
   }
 
+  logar() {
+    this.events.publish('disableMenu');  
+  }
+}
+
   //cadastrar() {
   //  this.navCtrl.push(CadastrarPage);
   //}
-  logar() {}
-  cadastrar(){}
 
   /*logar() {
     if (this.user.email == '' || this.user.password == '') {
@@ -86,4 +91,4 @@ export class LoginPage {
       }
     }
   } */
-}
+

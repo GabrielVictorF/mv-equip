@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, Events } from 'ionic-angular';
 
 import { LoginPage } from '../../pages/login/login';
 /**
@@ -15,10 +15,15 @@ import { LoginPage } from '../../pages/login/login';
 export class MenuComponent {
 
   text: string;
+  menuDesativado: boolean = true;
 
-  constructor(public app: App) {
+  constructor(public app: App, public events: Events) {
     console.log('Hello MenuComponent Component');
     this.text = 'Hello World';
+    this.events.subscribe('disableMenu', () => {
+      this.menuDesativado = !this.menuDesativado
+      console.log(this.menuDesativado);
+    })
   }
 
   pageLogin() {

@@ -1,12 +1,9 @@
-<button ion-item icon-end disabled>
+<button ion-item icon-end [disabled]="!menuDesativado">
 	Meu Perfil
 	<ion-icon name="contact"></ion-icon>
 </button>
-<button ion-item icon-end (click)="logout()" disabled>
-	Sair
-	<ion-icon name="exit"></ion-icon>
-</button>
-<button ion-item icon-end (click)="pageLogin()">
-	Ir para a página de login
+
+<button ion-item icon-end (click)="pageLogin()" [disabled]="!menuDesativado">
+	Logout
 	<ion-icon name="exit"></ion-icon>
 </button>
