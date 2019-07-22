@@ -21,6 +21,7 @@ export class NovaMovimentacaoPage {
   private semResultadosEquip = false;
   private modal;
   private locais;
+  private orgaos;
   private acao = this.navParams.get('acao');
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -38,9 +39,13 @@ export class NovaMovimentacaoPage {
                     observacao: '',
                     solicitante_id: 1,
                     tipo_emprestimo: 'I',
-                    localizacao_id: 1
+                    localizacao_id: null,
+                    orgao_id: null
                 }
                 }
+                this.api.getOrgaosExternos().subscribe(res => {
+                  this.orgaos = res;
+                }, Error => this.functions.showToast('Não foi possível recuperar os orgãos externos!'));
                 this.api.getLocalizacoes().subscribe(res => {
                   this.locais = res;
                   console.log(res)

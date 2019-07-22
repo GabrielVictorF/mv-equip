@@ -56,7 +56,7 @@ export class ApiProvider {
   }
 
   public getOrgaosExternos() {
-    let url = this.url + '/mv_equip/public/orgao?_orgao_id=$ne.2&_order=orgao_sigla'; //Retorna os orgaos externos em ordem alfalbética 
+    let url = this.url + '/mv_equip/public/orgao?orgao_id=$ne.2&_order=orgao_sigla'; //Retorna os orgaos externos em ordem alfalbética 
     return this.http.get(url, this.httpOptions);
   }
 
@@ -107,7 +107,7 @@ export class ApiProvider {
   }
 
   public getEmpMovimentacoesPage() {
-    let url = this.url + '/_QUERIES/get/emprestimo-full-relacionamento';
+    let url = this.url + '/_QUERIES/get/emprestimo-full-relacionamento?_order=orgao_id';
     //let url = this.url + '/mv_equip/public/solicitante?_join=right:emprestimo:solicitante.solicitante_id:$eq:emprestimo.emprestimo_id';
     return this.http.get(url, this.httpOptions);
   }

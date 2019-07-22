@@ -40,7 +40,9 @@
   			Orgão destino
   			<ion-icon name="calculator"></ion-icon>
   		</ion-label>
-  		<ion-input type="text" name="orgao"></ion-input>
+  		<ion-select interface="alert"  multiple="false" [(ngModel)]="emprestimo.orgao_id" name="localizacao">
+			<ion-option *ngFor="let x of orgaos" [value]="x.orgao_id">{{x.orgao_sigla}}</ion-option>
+		  </ion-select>
   	</ion-item>
     <ion-item *ngIf="emprestimo.tipo_emprestimo == 'I'">
     <ion-label stacked>

@@ -34,6 +34,7 @@ export class MovimentacoesPage {
     refreshEvent.complete();
     this.api.getEmpMovimentacoesPage().subscribe(res => {
       this.emprestimos = res, 
+      console.log(res)
       this.load.dismiss()
     }, Error => {
       if (refreshEvent)
