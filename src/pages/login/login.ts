@@ -7,6 +7,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { FunctionsProvider } from '../../providers/functions/functions';
 import { ApiProvider } from '../../providers/api/api';
+import { CadastroUsuarioPage } from '../cadastro-usuario/cadastro-usuario';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-login',
@@ -26,7 +28,8 @@ export class LoginPage {
     public functions: FunctionsProvider,
     public loadingCtrl: LoadingController,
     private formBuilder: FormBuilder,
-    public events: Events) {
+    public events: Events,
+    public app: App) {
       this.events.publish('disableMenu');
     this.formValida = this.formBuilder.group({
       login: ['', Validators.required],
@@ -36,7 +39,19 @@ export class LoginPage {
   }
 
   logar() {
-    this.events.publish('disableMenu');  
+    if (this.user.email == 'adm' && this.user.password == 'adm') {
+      this.app.getRootNavs()[0].setRoot(HomePage)
+      this.events.publish('disableMenu');
+      localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o');   
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Erro',
+        message: 'Credenciais inválidas',
+        buttons: [{
+          text: 'Ok'
+        }]
+      }); alert.present();
+    }
   }
 }
 

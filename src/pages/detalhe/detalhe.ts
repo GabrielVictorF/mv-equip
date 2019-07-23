@@ -31,7 +31,7 @@ export class DetalhePage {
   }
 
   deletarEquip() {
-    this.api.deleteEquipamento(this.data.equipamento_id).subscribe(res => {
+    this.api.deleteEquipamento(this.data.equipamento_id).subscribe((res: any) => {
       if (res.rows_affected == 0)
         this.functions.showToast('Erro ao deletar equipamento!')
       else {

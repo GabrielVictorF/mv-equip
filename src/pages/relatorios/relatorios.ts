@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { ApiProvider } from '../../providers/api/api';
-
-/**
- * Generated class for the RelatoriosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FunctionsProvider } from '../../providers/functions/functions';
 
 declare var JSC: any; 
 @IonicPage()
@@ -19,13 +13,18 @@ declare var JSC: any;
 export class RelatoriosPage {
   public relatorio;
   public dados;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider,
+    public functions: FunctionsProvider, public loadingCtrl: LoadingController) {
     
 }
   gerarRelatorio(tipo) {
+    let load = this.loadingCtrl.create({
+      content: 'Gerando relatório...'
+    }); load.present();
     switch(tipo) {
-      case 1:
+      case 1: // Interno / Externo
         this.api.getCountTipoEmprestimo().subscribe(res => {
+          load.dismiss();
           this.dados = res;
           console.log(res)
           this.relatorio = new JSC.Chart("chartDiv", {
@@ -33,10 +32,11 @@ export class RelatoriosPage {
             type: 'pie',
             title_label_text: 'Empréstimos por tipo (Externo / Interno)'
         });
-      }); 
+      }, Error => this.functions.showToast('Não foi possível gerar o relatório!')); 
       break;
-      case 2:
+      case 2: // Por usuário
         this.api.getCountSolicitanteEmprestimo().subscribe(res => {
+          load.dismiss();
           this.dados = res;
           console.log(this.dados)
            this.relatorio = new JSC.Chart("chartDiv", {
@@ -47,7 +47,9 @@ export class RelatoriosPage {
             type: 'pie',
             title_label_text: 'Empréstimos por Usuário'
           })
-        });
+        }, Error => 
+          this.functions.showToast('Não foi possível gerar o relatório!')
+      );
     }
   }
 }

@@ -10,14 +10,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-	private url = "http://localhost:8080";
+  private url = "http://172.30.88.13:8080";
+  private token = localStorage.getItem('token');
 	private httpOptions = ({
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
       })
     });
 
   constructor(public http: HttpClient) {
+    console.log(this.token)
     console.log('Hello ApiProvider Provider');
   }
 
@@ -46,7 +49,7 @@ export class ApiProvider {
 
 	public getPesquisaUsuario(nome: string) {
 		let url = this.url + '/_QUERIES/get/full-usuario?solicitante=' + nome;
-		return this.http.get(url, this.httpOptions);
+		return this.http.get(url, this.httpOptions);  
 	}
 
   public getSetores() {

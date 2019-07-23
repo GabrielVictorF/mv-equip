@@ -27,6 +27,7 @@ export class MenuComponent {
   }
 
   pageLogin() {
+    localStorage.removeItem('token')
     this.app.getRootNavs()[0].setRoot(LoginPage)
   }
 }

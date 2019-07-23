@@ -16,7 +16,7 @@ import { CadastroEquipamentoPage } from '../cadastro-equipamento/cadastro-equipa
 export class HomePage {
   private modal;
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    //this.iniciaModal();
+    this.iniciaModal();
   }
 
   pageNovaMovimentacao() {
