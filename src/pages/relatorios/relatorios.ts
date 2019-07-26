@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
 
-declare var JSC: any; 
+declare var JSC: any; // Diz ao IONIC que o JSC será utilizado 
 @IonicPage()
 @Component({
   selector: 'page-relatorios',
@@ -14,8 +14,7 @@ export class RelatoriosPage {
   public relatorio;
   public dados;
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider,
-    public functions: FunctionsProvider, public loadingCtrl: LoadingController) {
-    
+    public functions: FunctionsProvider, public loadingCtrl: LoadingController) {    
 }
   gerarRelatorio(tipo) {
     let load = this.loadingCtrl.create({
@@ -32,7 +31,10 @@ export class RelatoriosPage {
             type: 'pie',
             title_label_text: 'Empréstimos por tipo (Externo / Interno)'
         });
-      }, Error => this.functions.showToast('Não foi possível gerar o relatório!')); 
+      }, Error => {
+        load.dismiss();
+        this.functions.showToast('Não foi possível gerar o relatório!')
+    }); 
       break;
       case 2: // Por usuário
         this.api.getCountSolicitanteEmprestimo().subscribe(res => {
@@ -47,9 +49,10 @@ export class RelatoriosPage {
             type: 'pie',
             title_label_text: 'Empréstimos por Usuário'
           })
-        }, Error => 
+        }, Error => {
+          load.dismiss();
           this.functions.showToast('Não foi possível gerar o relatório!')
-      );
+        });
     }
   }
 }

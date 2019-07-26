@@ -20,13 +20,14 @@ export class MenuComponent {
   constructor(public app: App, public events: Events) {
     console.log('Hello MenuComponent Component');
     this.text = 'Hello World';
-    this.events.subscribe('disableMenu', () => {
+    this.events.subscribe('alteraEstadoMenu', () => {
       this.menuDesativado = !this.menuDesativado
       console.log(this.menuDesativado);
     })
   }
 
   pageLogin() {
+    this.events.publish('alteraEstadoMenu')
     localStorage.removeItem('token')
     this.app.getRootNavs()[0].setRoot(LoginPage)
   }

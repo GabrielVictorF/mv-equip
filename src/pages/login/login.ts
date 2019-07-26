@@ -30,7 +30,6 @@ export class LoginPage {
     private formBuilder: FormBuilder,
     public events: Events,
     public app: App) {
-      this.events.publish('disableMenu');
     this.formValida = this.formBuilder.group({
       login: ['', Validators.required],
       senha: ['', Validators.required],
@@ -39,22 +38,31 @@ export class LoginPage {
   }
 
   logar() {
-    if (this.user.email == 'adm' && this.user.password == 'adm') {
-      this.app.getRootNavs()[0].setRoot(HomePage)
-      this.events.publish('disableMenu');
-      localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o');   
-    } else {
+    this.api.getFazLogin(this.user.email, this.user.password).subscribe((res: any) => {
+      if(res.length < 1) {
+        let alert = this.alertCtrl.create({
+          title: 'Erro',
+          message: 'Credenciais inválidas', 
+          buttons: [{
+            text: 'Ok'
+          }]
+        }); alert.present();
+      } else {
+        this.app.getRootNavs()[0].setRoot(HomePage)
+        this.events.publish('alteraEstadoMenu');
+        localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o');
+      }
+    }, Error => {
       let alert = this.alertCtrl.create({
         title: 'Erro',
-        message: 'Credenciais inválidas',
+        message: 'Credenciais inválidas', 
         buttons: [{
           text: 'Ok'
         }]
       }); alert.present();
-    }
+    })  
   }
 }
-
   //cadastrar() {
   //  this.navCtrl.push(CadastrarPage);
   //}

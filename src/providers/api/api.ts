@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as MD5 from '../../providers/md5/md5.min.js';
 
 /*
   Generated class for the ApiProvider provider.
@@ -10,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-  private url = "http://172.30.88.13:8080";
+  private url = "http://localhost:8080";
   private token = localStorage.getItem('token');
 	private httpOptions = ({
       headers: new HttpHeaders({
@@ -27,6 +28,17 @@ export class ApiProvider {
   public getAllEquipamentos() {
   	let url = this.url + '/mv_equip/public/equipamento?_select=*';
   	return this.http.get(url, this.httpOptions);
+  }
+
+  public getFazLogin(login, password) {
+    let httpOptions = ({
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o'
+      })
+    });
+    let url = this.url + '/mv_equip/public/usuario?login=' + login + '&password=' + MD5(password);
+    return this.http.get(url, httpOptions); 
   }
 
   public postEquipamento(equipamento) {
