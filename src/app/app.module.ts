@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +25,20 @@ import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
 
 import { MenuComponent } from '../components/menu/menu';
+import * as Sentry from 'sentry-cordova';
+
+Sentry.init({ dsn: 'https://52f83d3d624a423189109d4a867dc15b@sentry.io/1515195' })
+
+export class SentryIonicErrorHandler extends IonicErrorHandler {
+  handleError(error) {
+    super.handleError(error);
+    try {
+      Sentry.captureException(error.originalError || error);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
 
 @NgModule({
   declarations: [
@@ -71,9 +85,11 @@ import { MenuComponent } from '../components/menu/menu';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    //{provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: SentryIonicErrorHandler},
     ApiProvider,
     FunctionsProvider
   ]
 })
-export class AppModule {}
+export class AppModule{}
+

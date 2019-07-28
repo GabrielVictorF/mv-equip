@@ -6,16 +6,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
+//declare var Sentry: any;
+
 @Component({
   templateUrl: 'app.html'
 })
-
-
 
 export class MyApp {
   rootPage:any;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
+    //entry.init({ dsn: 'https://52f83d3d624a423189109d4a867dc15b@sentry.io/1515195' });
       if (localStorage.getItem('token'))
         this.rootPage = HomePage;
       else

@@ -11,7 +11,7 @@ import * as MD5 from '../../providers/md5/md5.min.js';
 @Injectable()
 export class ApiProvider {
 
-  private url = "http://localhost:8080";
+  private url = "http://192.168.0.6:8080";
   private token = localStorage.getItem('token');
 	private httpOptions = ({
       headers: new HttpHeaders({
