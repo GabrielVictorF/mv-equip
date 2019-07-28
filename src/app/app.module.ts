@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, ToastController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,8 +26,25 @@ import { FunctionsProvider } from '../providers/functions/functions';
 
 import { MenuComponent } from '../components/menu/menu';
 import * as Sentry from 'sentry-cordova';
+import * as TEste from '@sentry/browser';
 
-Sentry.init({ dsn: 'https://52f83d3d624a423189109d4a867dc15b@sentry.io/1515195' })
+Sentry.init({ 
+  dsn: 'https://52f83d3d624a423189109d4a867dc15b@sentry.io/1515195' ,
+  beforeSend(event, hint) {
+    console.log(event)
+    console.log(hint)
+      // Check if it is an exception, and if so, show the report dialog
+      if (event.exception) {
+        localStorage.setItem('sentry-error-ev-id', event.event_id);
+        //var evento = new CustomEvent('sentry-report', {'detail': event.event_id});
+        //document.dispatchEvent(evento);  
+        //console.log("Erro enviado ao Sentry");
+      }
+      return event;
+    }
+  })
+
+//Sentry.captureException(new Error('Testando'));
 
 export class SentryIonicErrorHandler extends IonicErrorHandler {
   handleError(error) {

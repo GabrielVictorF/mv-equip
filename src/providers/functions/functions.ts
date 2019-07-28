@@ -18,11 +18,20 @@ export class FunctionsProvider {
     console.log('Hello FunctionsProvider Provider');
   }
 
-  public showToast(message: string) {
+  public showToast(message: string, sentry?: any) {
   	let toast = this.toastCtrl.create({
   		message: message,
-  		duration: 2000
-  	}); toast.present();
+  		duration: 2000,
+      showCloseButton: true,
+      closeButtonText: 'Reportar erro'
+  	}); 
+
+    toast.onDidDismiss((data, role) => {
+      if (role == 'close') {
+        var evento = new CustomEvent('user-feedback');
+        document.dispatchEvent(evento);
+      }
+    }); toast.present();
   }
 
   public formataData(data) { //YYYY-MM-DD

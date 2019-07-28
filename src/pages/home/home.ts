@@ -9,14 +9,19 @@ import { CadastroUsuarioPage } from '../cadastro-usuario/cadastro-usuario';
 import { RelatoriosPage } from '../relatorios/relatorios';
 import { CadastroEquipamentoPage } from '../cadastro-equipamento/cadastro-equipamento';
 
+import { ApiProvider } from '../../providers/api/api';
+import { FunctionsProvider } from '../../providers/functions/functions';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
   private modal;
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    this.iniciaModal();
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController,
+    public api: ApiProvider, public functions: FunctionsProvider) {
+    //this.iniciaModal();
   }
 
   pageNovaMovimentacao() {
@@ -26,6 +31,14 @@ export class HomePage {
   iniciaModal() {
    this.modal = this.modalCtrl.create(Profile);
    this.modal.present();
+ }
+
+ teste() {
+   this.api.getSetores().subscribe(() => {
+
+   }, Error => {
+     this.functions.showToast('ERRRRRROO')
+   })
  }
 
 

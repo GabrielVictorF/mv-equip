@@ -11,7 +11,7 @@ import * as MD5 from '../../providers/md5/md5.min.js';
 @Injectable()
 export class ApiProvider {
 
-  private url = "http://192.168.0.6:8080";
+  private url = "http://192.168.0.4:8080";
   private token = localStorage.getItem('token');
 	private httpOptions = ({
       headers: new HttpHeaders({
@@ -162,5 +162,21 @@ export class ApiProvider {
     return this.http.get(url, this.httpOptions);
   }
 
-  public post
+  public postSentryFeedback(body) {
+    let httpOptions = ({
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 992f7e5902664dee9ea782e5c8ef966c05fc88cd7dd643d0b7d8d6cf0b7bf1ff'
+      })
+    }); 
+    let url = "http://sentry.io/api/0/projects/gabriel-victor/mv-equip-sepog/user-feedback/";
+    console.log(httpOptions)
+    let body2 = {
+      "comments": "It brokeaa!", 
+      "email": "janeaa@example.com", 
+      "event_id": "9b81d4c26dee4ed18f5db28136c3d15f", 
+      "name": "Jane Samith"
+    }
+    return this.http.post(url, body2);
+  }
 }
