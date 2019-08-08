@@ -12,6 +12,8 @@ import { CadastroEquipamentoPage } from '../cadastro-equipamento/cadastro-equipa
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
 
+declare var $: any;
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -19,10 +21,12 @@ import { FunctionsProvider } from '../../providers/functions/functions';
 
 export class HomePage {
   private modal;
+  private relatorio;
   constructor(public navCtrl: NavController, public modalCtrl: ModalController,
     public api: ApiProvider, public functions: FunctionsProvider) {
     //this.iniciaModal();
-  }
+    //this.functions.showToast('ERRRRRROO')
+}  
 
   pageNovaMovimentacao() {
   	this.navCtrl.push(NovaMovimentacaoPage);
@@ -33,11 +37,11 @@ export class HomePage {
    this.modal.present();
  }
 
- teste() {
+ teste() { // Teste do relatório de erro ao Sentry
    this.api.getSetores().subscribe(() => {
 
    }, Error => {
-     this.functions.showToast('ERRRRRROO')
+     this.functions.showToastError('ERRRRRROO')
    })
  }
 

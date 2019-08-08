@@ -46,9 +46,12 @@
     <strong>Solicitante:</strong> {{ data.solicitante_nome }}
   </ion-item>
   
-  <ion-item>
+  <!--<ion-item>
     <button ion-button full (click)="putEmprestimo()">Editar instância</button>
-  </ion-item>
+  </ion-item> -->
+  <ion-fab right bottom>
+    <button ion-fab color="black" (click)="actionSheet()"><ion-icon name="menu"></ion-icon></button>
+  </ion-fab>
 </ion-content>
 
 <ion-content *ngIf="detalhe == 'solicitante'">

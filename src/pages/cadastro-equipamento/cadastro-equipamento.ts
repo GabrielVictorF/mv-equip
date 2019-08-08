@@ -35,10 +35,10 @@ export class CadastroEquipamentoPage {
     this.statusNewEquip = 'spinner-border spinner-border-sm';
     this.api.postEquipamento(this.equipamento).subscribe(res => {
       this.statusNewEquip = '',
-      this.functions.showToast('Equipamento cadastrado com sucesso!')
+      this.functions.showToastSuccess('Equipamento cadastrado com sucesso!')
     }, Error => {
       this.statusNewEquip = '',
-      this.functions.showToast('Não foi possível cadastrar o equipamento!')
+      this.functions.showToastError('Não foi possível cadastrar o equipamento!')
     })  ;
   }
 

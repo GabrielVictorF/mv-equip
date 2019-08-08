@@ -29,7 +29,7 @@ export class NovoEquipamentoPage {
 
   postEquipamento() {
   	this.api.postEquipamento(this.equipamento).subscribe(res =>
-      this.functionsPro.showToast('Equipamento cadastrado com sucesso!')
+      this.functionsPro.showToastSuccess('Equipamento cadastrado com sucesso!')
     );
   }
 }

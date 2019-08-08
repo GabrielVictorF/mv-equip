@@ -15,15 +15,25 @@ import { DetalhePage } from '../detalhe/detalhe';
 export class MovimentacoesPage {
   private emprestimos;
   public load;
+  public totalEmprestimos;
+  private cores = ["dark", "light"];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
         public api: ApiProvider, public events: Events, public functions: FunctionsProvider,
         public loading: LoadingController, public alertCtrl: AlertController) {
+          this.countTabela();
           this.events.subscribe('emprestimoExcluido', () => {
-            this.getEmprestimos()
+            this.getEmprestimos(),
+            this.countTabela();
         }
       ); 
       this.getEmprestimos();      
+  }
+
+  countTabela() {
+    this.api.countTabela('emprestimo', 'emprestimo_id').subscribe(res => {
+      this.totalEmprestimos = res;
+    });
   }
 
   getEmprestimos(refreshEvent?) {

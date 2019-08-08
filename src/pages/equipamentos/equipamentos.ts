@@ -43,7 +43,7 @@ export class EquipamentosPage {
       this.equipamentos = res;
       load.dismiss();
     }, Error => {
-      this.functions.showToast('Erro ao obter equipamentos!');
+      this.functions.showToastError('Erro ao obter equipamentos!');
       load.dismiss();
     });
   }
@@ -63,7 +63,7 @@ export class EquipamentosPage {
         }
 	  	}, Error => {
          this.statusLoadingEquip = 2;
-        this.functions.showToast("Erro ao obter equipamentos, favor tentar novamente!");
+        this.functions.showToastError("Erro ao obter equipamentos, favor tentar novamente!");
       });
   	} else {
       console.log("CAMPO ZERADO")

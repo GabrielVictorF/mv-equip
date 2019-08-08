@@ -6,19 +6,12 @@ import { FunctionsProvider } from '../../providers/functions/functions';
 
 import { DetalhePage } from '../detalhe/detalhe';
 
-/**
- * Generated class for the UsuariosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
-  selector: 'page-usuarios',
-  templateUrl: 'usuarios.html',
+  selector: 'page-solicitantes',
+  templateUrl: 'solicitantes.html',
 })
-export class UsuariosPage {
+export class SolicitantesPage {
 	private setor;
   private orgao;
 	private pesquisa = {

@@ -45,7 +45,7 @@ export class NovaMovimentacaoPage {
                 }
                 this.api.getOrgaosExternos().subscribe(res => {
                   this.orgaos = res;
-                }, Error => this.functions.showToast('Não foi possível recuperar os orgãos externos!'));
+                }, Error => this.functions.showToastError('Não foi possível recuperar os orgãos externos!'));
                 this.api.getLocalizacoes().subscribe(res => {
                   this.locais = res;
                   console.log(res)
@@ -64,7 +64,7 @@ export class NovaMovimentacaoPage {
           this.semResultadosEquip = true;
 	  	}, Error => { //Caso o request retorne erro
         this.statusLoadingEquip = false;
-        this.functions.showToast("Erro ao obter equipamentos, favor tentar novamente!");
+        this.functions.showToastError("Erro ao obter equipamentos, favor tentar novamente!");
       });
   	} else { //Caso o campo esteja vazio
       this.statusLoadingEquip = false;
@@ -76,7 +76,7 @@ export class NovaMovimentacaoPage {
     let mapeamento;
     this.equipamentos_selecionados.map(res => {
       if (equipamentoSelecionado.equipamento_id == res.equipamento_id) {
-        this.functions.showToast("Não é possível selecionar o mesmo equipamento mais de uma vez!");
+        this.functions.showToastError("Não é possível selecionar o mesmo equipamento mais de uma vez!");
         mapeamento = true;
         return false;
       }
@@ -104,28 +104,20 @@ export class NovaMovimentacaoPage {
     if (this.acao) {
       this.api.putEmprestimo(this.emprestimo).subscribe(() => {
         this.statusNewMo = '';
-        this.functions.showToast('Empréstimo atualizado!');
+        this.functions.showToastSuccess('Empréstimo atualizado!');
       }, Error => {
         this.statusNewMo = '';
       })
     } else {
       this.api.postEmprestimo(this.emprestimo).subscribe(res => {
+        this.functions.showToastSuccess('Empréstimo criado com sucesso!')
         this.statusNewMo = '';
         console.log(res);
       }, Error => {
+        this.functions.showToastError('Erro ao criar empréstimo!')
         this.statusNewMo = '';
       })
     }
-  }
-
-  deleteEmprestimo() {
-      this.api.deleteEmprestimo(this.emprestimo.emprestimo_id).subscribe(res => {
-        this.events.publish('emprestimoExcluido');
-        this.navCtrl.pop();
-        this.functions.showToast('Empréstimo excluído');
-      }, Error => {
-        this.functions.showToast('Erro ao excluir empréstimo!');
-      })
   }
 
   solicitanteModal() {
@@ -176,7 +168,7 @@ export class SolicitanteResponsavel {
         this.setor = res;
         console.log(res)
       }, Error => {
-        this.functions.showToast('Erro ao obter a lista de setores!');
+        this.functions.showToastError('Erro ao obter a lista de setores!');
       });
  }
 
@@ -196,7 +188,7 @@ export class SolicitanteResponsavel {
         }
       }, Error => { //Erro na req
         this.pesquisa_usuario = 2;
-        this.functions.showToast("Erro ao obter usuários, favor tentar novamente!");
+        this.functions.showToastError("Erro ao obter usuários, favor tentar novamente!");
       });
     } else {  // Caso o campo de pesquisa esteja zerado
       this.pesquisa_usuario = 0;
@@ -207,7 +199,7 @@ export class SolicitanteResponsavel {
   postSolicitante() { // Cadastro de novo solicitante
     this.api.postSolicitante(this.solicitanteNew).subscribe(res => {
       this.solicitante_selecionado = res;
-      this.functions.showToast("Solicitante cadastrado com sucesso!");
+      this.functions.showToastSuccess("Solicitante cadastrado com sucesso!");
     });
   }
 

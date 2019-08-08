@@ -13,10 +13,10 @@ import { FunctionsProvider } from '../../providers/functions/functions';
 
 @IonicPage()
 @Component({
-  selector: 'page-cadastro-usuario',
-  templateUrl: 'cadastro-usuario.html',
+  selector: 'page-cadastro-solicitante',
+  templateUrl: 'cadastro-solicitante.html',
 })
-export class CadastroUsuarioPage {
+export class CadastroSolicitantePage {
 	private orgao;
 	public solicitante = {
 		orgao_id: 0,
@@ -42,7 +42,7 @@ export class CadastroUsuarioPage {
 
   adicionarUsuario() {
   	this.api.postUsuario(this.solicitante).subscribe(res => {
-  		this.functions.showToastSuccess(this.solicitante.solicitante_nome + " foi cadastrado com sucesso!");
+  		(this.solicitante.solicitante_nome + " foi cadastrado com sucesso!");
   	});
   }
 }

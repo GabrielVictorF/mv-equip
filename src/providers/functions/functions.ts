@@ -1,5 +1,5 @@
 //import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 
 /*
@@ -8,7 +8,11 @@ import { ToastController } from 'ionic-angular';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+@Component({
+  templateUrl:'toast.html'
+})
 @Injectable()
+
 export class FunctionsProvider {
   public mesNomes = ['Janeiro', 'Fevereiro', 'Março', 'Abril',
                       'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
@@ -18,7 +22,7 @@ export class FunctionsProvider {
     console.log('Hello FunctionsProvider Provider');
   }
 
-  public showToast(message: string, sentry?: any) {
+  public showToastError(message: string, sentry?: any) {
   	let toast = this.toastCtrl.create({
   		message: message,
   		duration: 2000,
@@ -32,6 +36,15 @@ export class FunctionsProvider {
         document.dispatchEvent(evento);
       }
     }); toast.present();
+  }
+
+  public showToastSuccess(message: string) {
+    let toast = this.toastCtrl.create({
+  		message: message,
+  		duration: 2000,
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+  	}); toast.present();
   }
 
   public formataData(data) { //YYYY-MM-DD

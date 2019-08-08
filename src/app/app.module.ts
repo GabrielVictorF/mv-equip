@@ -24,9 +24,12 @@ import { CadastroEquipamentoPage } from '../pages/cadastro-equipamento/cadastro-
 import { ApiProvider } from '../providers/api/api';
 import { FunctionsProvider } from '../providers/functions/functions';
 
+import { File } from '@ionic-native/file';  
+
 import { MenuComponent } from '../components/menu/menu';
 import * as Sentry from 'sentry-cordova';
 import * as TEste from '@sentry/browser';
+import { ExpressProvider } from '../providers/express/express';
 
 Sentry.init({ 
   dsn: 'https://52f83d3d624a423189109d4a867dc15b@sentry.io/1515195' ,
@@ -102,10 +105,12 @@ export class SentryIonicErrorHandler extends IonicErrorHandler {
   providers: [
     StatusBar,
     SplashScreen,
+    File,
     //{provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: SentryIonicErrorHandler},
     ApiProvider,
-    FunctionsProvider
+    FunctionsProvider,
+    ExpressProvider
   ]
 })
 export class AppModule{}

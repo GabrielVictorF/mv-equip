@@ -31,13 +31,13 @@ export class EditarPage {
     this.api.deleteEmprestimo(this.data.emprestimo_id).subscribe(res => {
       this.events.publish('emprestimoExcluido');
       this.navCtrl.pop();
-      this.functions.showToast('Empréstimo excluído');
+      this.functions.showToastSuccess('Empréstimo excluído');
     }, Error => {
-      this.functions.showToast('Erro ao excluir empréstimo!');
+      this.functions.showToastError('Erro ao excluir empréstimo!');
     })
   }
 
   atualizarEmprestimo() {
-    this.api.putEmprestimo(this.data).subscribe(() => {this.functions.showToast('Empréstimo atualizado!')})
+    this.api.putEmprestimo(this.data).subscribe(() => {this.functions.showToastSuccess('Empréstimo atualizado!')})
   }
 }

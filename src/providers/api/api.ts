@@ -11,12 +11,13 @@ import * as MD5 from '../../providers/md5/md5.min.js';
 @Injectable()
 export class ApiProvider {
 
-  private url = "http://192.168.0.4:8080";
+  private url = "http://172.30.88.13:8080";
   private token = localStorage.getItem('token');
 	private httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.token
+        'Authorization': 'Bearer ' + this.token,
+        'Access-Control-Allow-Credentials': 'true'
       })
     });
 
@@ -28,6 +29,11 @@ export class ApiProvider {
   public getAllEquipamentos() {
   	let url = this.url + '/mv_equip/public/equipamento?_select=*';
   	return this.http.get(url, this.httpOptions);
+  }
+
+  public countTabela(tabela: string, campoId: string) {
+    let url = this.url + '/mv_equip/public/' + tabela + '?_count=' + campoId;
+    return this.http.get(url, this.httpOptions);
   }
 
   public getFazLogin(login, password) {
@@ -128,7 +134,7 @@ export class ApiProvider {
 
   public deleteEmprestimo(emprestimoId) {
     let url = this.url + '/mv_equip/public/emprestimo?emprestimo_id=' + emprestimoId;
-    return this.http.delete(url);
+    return this.http.delete(url, this.httpOptions);
   }
 
   public deleteEquipamento(equipamentoId) {
@@ -166,17 +172,24 @@ export class ApiProvider {
     let httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 992f7e5902664dee9ea782e5c8ef966c05fc88cd7dd643d0b7d8d6cf0b7bf1ff'
+        'Authorization': 'Bearer 992f7e5902664dee9ea782e5c8ef966c05fc88cd7dd643d0b7d8d6cf0b7bf1ff',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Origin': 'http://localhost:8100'
       })
     }); 
-    let url = "http://sentry.io/api/0/projects/gabriel-victor/mv-equip-sepog/user-feedback/";
+    let url = "http://www.sentry.io/api/0/projects/gabriel-victor/mv-equip-sepog/user-feedback/";
     console.log(httpOptions)
     let body2 = {
       "comments": "It brokeaa!", 
       "email": "janeaa@example.com", 
-      "event_id": "9b81d4c26dee4ed18f5db28136c3d15f", 
+      "event_id": "365a5fa739f846e9b51f8e156e775b95", 
       "name": "Jane Samith"
     }
     return this.http.post(url, body2);
+  }
+
+  public getCountEmprestimos() {
+    let url = this.url + '/_QUERIES/get/quantidade-emprestimos';
+    return this.http.get(url, this.httpOptions);
   }
 }
