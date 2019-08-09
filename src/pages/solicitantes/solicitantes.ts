@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
@@ -31,7 +31,11 @@ export class SolicitantesPage {
   }
 	private resultado;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  				public api: ApiProvider, public functions: FunctionsProvider) {
+          public api: ApiProvider, public functions: FunctionsProvider,
+          public events: Events) {
+    this.events.subscribe('emprestimoExcluido', () => {
+    
+    });
     this.api.getAllUsuarios().subscribe(res => {
       this.resultado = res;
       console.log(this.resultado)

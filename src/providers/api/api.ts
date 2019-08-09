@@ -102,7 +102,7 @@ export class ApiProvider {
   }
 
   public getUsuariosExternos(orgaos) {
-   let url = this.url + '/mv_equip/public/solicitante?orgao_id=$in.' + orgaos.toString();
+   let url = this.url + '/mv_equip/public/solicitante?orgao.orgao_id=$in.' + orgaos.toString() + '&_join=left:orgao:solicitante.orgao_id:$eq:orgao.orgao_id';
    console.log(url)
    return this.http.get(url, this.httpOptions);   
   }
@@ -139,6 +139,11 @@ export class ApiProvider {
 
   public deleteEquipamento(equipamentoId) {
     let url = this.url + '/mv_equip/public/equipamento?equipamento_id=' + equipamentoId;
+    return this.http.delete(url, this.httpOptions);
+  }
+
+  public deleteSolicitante(solicitanteId) {
+    let url = this.url + '/mv_equip/public/solicitante?solicitante_id=' + solicitanteId;
     return this.http.delete(url, this.httpOptions);
   }
 

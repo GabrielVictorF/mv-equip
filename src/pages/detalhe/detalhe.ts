@@ -66,13 +66,24 @@ export class DetalhePage {
             buttons:[{
               text: "Sim",
               handler: () => {
+                if (this.detalhe == 'emprestimo') {
                   this.api.deleteEmprestimo(this.data.emprestimo_id).subscribe(res => {
                     this.events.publish('emprestimoExcluido');
                     this.navCtrl.pop();
                     this.functions.showToastSuccess('Empréstimo excluído');
                   }, Error => {
                     this.functions.showToastError('Erro ao excluir empréstimo!');
-                  })
+                  });
+                }
+                else if (this.detalhe == 'solicitante') {
+                  this.api.deleteSolicitante(this.data.solicitante_id).subscribe(res => {
+                    this.events.publish('solicitanteExcluido');
+                    this.navCtrl.pop();
+                    this.functions.showToastSuccess('Solicitante excluído');
+                  }, Error => {
+                    this.functions.showToastError('Erro ao excluir solicitante!');
+                  });
+                }      
               }
               },
               {

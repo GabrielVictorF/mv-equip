@@ -15,7 +15,7 @@
 		<ion-label stacked>
 			Órgão do usuário
 		</ion-label>
-		<ion-select interface="popover" [(ngModel)]="pesquisa.orgao_id">
+		<ion-select interface="popover" [(ngModel)]="pesquisa.orgao_id" multiple="true">
 			<ion-option *ngFor="let x of orgao" [value]="x.orgao_id">{{x.orgao_sigla}}</ion-option>
 		</ion-select>
 	</ion-item>
