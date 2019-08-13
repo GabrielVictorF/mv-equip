@@ -101,6 +101,12 @@ export class ApiProvider {
     return this.http.get(url, this.httpOptions);
   }
 
+  public putFinalizaEmprestimo(emprestimoId: number, body: any) {
+    console.log(body)
+    let url = this.url + '/mv_equip/public/emprestimo?emprestimo.emprestimo_id=' + emprestimoId;
+    return this.http.put(url, body, this.httpOptions);
+  }
+
   public getUsuariosExternos(orgaos) {
    let url = this.url + '/mv_equip/public/solicitante?orgao.orgao_id=$in.' + orgaos.toString() + '&_join=left:orgao:solicitante.orgao_id:$eq:orgao.orgao_id';
    console.log(url)
@@ -126,8 +132,13 @@ export class ApiProvider {
     return this.http.get(url, this.httpOptions);
   }
 
-  public getEmpMovimentacoesPage() {
-    let url = this.url + '/_QUERIES/get/emprestimo-full-relacionamento?_order=orgao_id';
+  public getEmpMovimentacoesPage(emprestimoId?, solicitante?) {
+    let url = this.url + '/_QUERIES/get/emprestimo-full-relacionamento';
+    if (emprestimoId)
+      url += '?emprestimoId=' + emprestimoId;
+    if (solicitante)
+      url += '?solicitante=' + solicitante;
+      console.log(url)
     //let url = this.url + '/mv_equip/public/solicitante?_join=right:emprestimo:solicitante.solicitante_id:$eq:emprestimo.emprestimo_id';
     return this.http.get(url, this.httpOptions);
   }

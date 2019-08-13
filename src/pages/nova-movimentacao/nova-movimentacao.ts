@@ -35,7 +35,7 @@ export class NovaMovimentacaoPage {
                   this.emprestimo = {
                     equipamento_id: [1],
                     data_emprestimo: new Date().toISOString(),
-                    data_devolucao: new Date().toISOString(), 
+                    data_devolucao: null, 
                     observacao: '',
                     solicitante_id: 1,
                     tipo_emprestimo: 'I',

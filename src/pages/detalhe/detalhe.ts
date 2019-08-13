@@ -92,7 +92,28 @@ export class DetalhePage {
           });
           alert.present();
         }
-      }]
+      },
+      {
+        text: 'Finalizar empréstimo',
+        icon: 'checkbox-outline',
+        handler: () => {
+          let hoje = {
+            data_devolucao: new Date().toISOString()
+          };
+          this.api.putFinalizaEmprestimo(this.data.emprestimo_id, hoje).subscribe(res => {
+            this.data.data_devolucao = hoje.data_devolucao.substring(0,10); 
+            this.api.getEmpMovimentacoesPage(87).subscribe(res => {
+              this.data = res,
+              console.log(this.data)
+            });
+            this.functions.showToastSuccess("Equipamento recebido hoje!");
+            this.events.publish('emprestimoExcluido'); //Evento de modificação no empréstimo
+          }, Error => {
+            this.functions.showToastError("Erro ao atualizar empréstimo");
+          });
+        }
+      }
+    ]
     });
     action.present();
   }

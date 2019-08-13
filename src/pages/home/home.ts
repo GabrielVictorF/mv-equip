@@ -24,7 +24,7 @@ export class HomePage {
   private relatorio;
   constructor(public navCtrl: NavController, public modalCtrl: ModalController,
     public api: ApiProvider, public functions: FunctionsProvider) {
-    //this.iniciaModal();
+    this.iniciaModal();
     //this.functions.showToast('ERRRRRROO')
 }  
 
