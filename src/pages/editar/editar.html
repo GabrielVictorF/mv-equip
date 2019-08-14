@@ -1,59 +1,31 @@
-<!--
-  Generated template for the EditarPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <ion-title>editar</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-        <ion-item>
-            <ion-label stacked>
-              Tipo de movimentação
-            </ion-label>
-            <ion-select [(ngModel)]="data.tipo_emprestimo" cancelText="cancelar" interface="popover" name="tipo">
-              <ion-option value="I">Interna</ion-option>
-              <ion-option value="E">Externa</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-          <ion-label>
-          Data de empréstimo
-          <ion-icon name="calendar"></ion-icon>
-        </ion-label>
-        <ion-datetime pickerFormat="DD-MMMM-YYYY"
-          monthNames="{{functions.mesNomes}}"
-          monthShortNames="{{functions.mesShort}}"
-          cancelText="Cancelar" doneText="Feito" placeholder="Data da movimentação"
-          [(ngModel)]="data.data_emprestimo" name="data_emprestimo">
-        </ion-datetime>
-      </ion-item>
-      <ion-item>
-          <ion-label>
-            Data de devolução
-            <ion-icon name="calendar"></ion-icon>
-          </ion-label>
-          <ion-datetime pickerFormat="DD-MMMM-YYYY"
-          monthNames="{{functions.mesNomes}}" monthShortNames="{{functions.mesShort}}" cancelText="Cancelar" doneText="Feito" 
-          placeholder="Data de devolução"  [(ngModel)]="data.data_devolucao" name="data_devolucao"
-          ></ion-datetime>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            Observação
-            <ion-icon name="add"></ion-icon>
-          </ion-label>
-          <ion-input type="text" [(ngModel)]="data.observacao" placeholder="Observação acerca da movimentação"
-            name="observacao"></ion-input>
-        </ion-item>
-        <ion-item>
-            <button ion-button full (click)="atualizarEmprestimo()">Atualizar empréstimo</button>
-          </ion-item>
-        <ion-item>
-          <button ion-button full (click)="excluirEmprestimo()">Excluir empréstimo</button>
-        </ion-item>
+<ion-content padding *ngIf="tipo == 'solicitante'">
+  <form (ngSubmit)="editarSolicitante()">
+		<ion-item>
+			<ion-label stacked>
+				Nome
+				<ion-icon name="person"></ion-icon>
+			</ion-label>
+			<ion-input type="text" placeholder="Nome de usuário" [(ngModel)]="data.solicitante_nome" name="nome"></ion-input>
+		</ion-item>
+		<ion-item >
+		<ion-label stacked>
+			Órgão
+		</ion-label>
+		<ion-select interface="alert" [(ngModel)]="data.orgao_id" multiple="false" [selectOptions]="optionsOrgao" name="orgao">
+			<ion-option *ngFor="let x of orgao" [value]="x.orgao_id">{{ x.orgao_sigla }}</ion-option>
+		</ion-select>
+	</ion-item>
+	<ion-item>
+		<button ion-button type="submit" icon-end full>
+			Atualizar
+			<ion-icon name="cloud-done"></ion-icon>
+		</button>
+	</ion-item>
+	</form>
 </ion-content>

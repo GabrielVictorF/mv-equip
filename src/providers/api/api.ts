@@ -107,6 +107,17 @@ export class ApiProvider {
     return this.http.put(url, body, this.httpOptions);
   }
 
+  public putEditaSolicitante(body){
+    let url = this.url + '/mv_equip/public/solicitante?solicitante_id=' + body.solicitante_id;
+    let body_format = {
+      solicitante_nome: body.solicitante_nome,
+      orgao_id: body.orgao_id,
+      setor_id: body.setor_id
+    }
+    console.log(body)
+    return this.http.put(url, body_format, this.httpOptions);
+  }
+
   public getUsuariosExternos(orgaos, setor?) {
    let url = this.url + '/mv_equip/public/solicitante?solicitante.orgao_id=$in.' + orgaos.toString() + '&_join=left:setor:solicitante.setor_id:$eq:setor.setor_id' + '&_join=left:orgao:solicitante.orgao_id:$eq:orgao.orgao_id';
    if (setor)

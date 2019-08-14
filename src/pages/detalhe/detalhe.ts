@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, ActionSheetController, AlertController } from 'ionic-angular';
 
 import { NovaMovimentacaoPage } from '../nova-movimentacao/nova-movimentacao';
+import { EditarPage } from '../editar/editar';
 
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
@@ -46,7 +47,10 @@ export class DetalhePage {
         text: 'Editar',
         icon: 'create',
         handler: () => {
-          this.putEmprestimo();
+          if(this.detalhe == 'emprestimo')
+            this.putEmprestimo();
+          else
+            this.putSolicitante();
         }
       },
       {
@@ -111,5 +115,9 @@ export class DetalhePage {
     }
     console.log(action)
     action.present();
+  }
+
+  putSolicitante() {
+    this.navCtrl.push(EditarPage, {'data': this.data, 'tipo': 'solicitante'});
   }
 }

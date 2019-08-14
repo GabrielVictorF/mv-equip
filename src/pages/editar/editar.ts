@@ -18,9 +18,19 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class EditarPage {
   private data = this.navParams.get('data');
+  private tipo = this.navParams.get('tipo');
+  private optionsOrgao = {
+    title: 'Órgãos',
+    subtitle: 'Teste'
+  }
+  private orgao;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public functions: FunctionsProvider,
               public api: ApiProvider, public events: Events) {
     console.log(this.data)
+    this.api.getOrgaosExternos().subscribe(res => {
+      this.orgao = res;
+    });
   }
 
   ionViewDidLoad() {
@@ -37,7 +47,11 @@ export class EditarPage {
     })
   }
 
-  atualizarEmprestimo() {
-    this.api.putEmprestimo(this.data).subscribe(() => {this.functions.showToastSuccess('Empréstimo atualizado!')})
+  editarSolicitante() {
+    this.api.putEditaSolicitante(this.data).subscribe(() => {
+      this.functions.showToastSuccess(this.data.solicitante_nome + ' atualizado com sucesso!');
+    }, Error => {
+      this.functions.showToastError('Erro ao modificar solicitante');
+    })
   }
 }
