@@ -47,5 +47,6 @@
 	<ion-item *ngFor="let x of resultado" (click)="detalhePage(x)">
 		<strong>Usuário: </strong>{{ x.solicitante_nome }}
 		<strong>Órgão: </strong>{{ x.orgao_sigla }}
+		<strong *ngIf="x.setor_sigla">Setor: </strong>{{ x.setor_sigla }}
 	</ion-item>
 </ion-content>

@@ -76,7 +76,7 @@ export class ApiProvider {
   }
 
   public getOrgaosExternos() {
-    let url = this.url + '/mv_equip/public/orgao?orgao_id=$ne.2&_order=orgao_sigla'; //Retorna os orgaos externos em ordem alfalbética 
+    let url = this.url + '/mv_equip/public/orgao?_order=orgao_sigla'; //Retorna os orgaos externos em ordem alfalbética 
     return this.http.get(url, this.httpOptions);
   }
 
@@ -107,14 +107,18 @@ export class ApiProvider {
     return this.http.put(url, body, this.httpOptions);
   }
 
-  public getUsuariosExternos(orgaos) {
-   let url = this.url + '/mv_equip/public/solicitante?orgao.orgao_id=$in.' + orgaos.toString() + '&_join=left:orgao:solicitante.orgao_id:$eq:orgao.orgao_id';
+  public getUsuariosExternos(orgaos, setor?) {
+   let url = this.url + '/mv_equip/public/solicitante?solicitante.orgao_id=$in.' + orgaos.toString() + '&_join=left:setor:solicitante.setor_id:$eq:setor.setor_id' + '&_join=left:orgao:solicitante.orgao_id:$eq:orgao.orgao_id';
+   if (setor)
+    url+= '&solicitante.setor_id=$in.' + setor.toString();
    console.log(url)
    return this.http.get(url, this.httpOptions);   
   }
 
   public postUsuario(body) {
     let url = this.url + '/mv_equip/public/solicitante';
+    body.setor_id = body.setor_id[0]; //GAMBIARRA
+    console.log(body)
     return this.http.post(url, body, this.httpOptions);
   }
 

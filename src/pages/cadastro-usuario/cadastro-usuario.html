@@ -27,6 +27,14 @@
 			<ion-option *ngFor="let x of orgao" [value]="x.orgao_id">{{ x.orgao_sigla }}</ion-option>
 		</ion-select>
 	</ion-item>
+	<ion-item *ngIf="solicitante.orgao_id == 2">
+		<ion-label stacked>
+			Setores
+		</ion-label>
+		<ion-select interface="alert" [(ngModel)]="solicitante.setor_id" multiple="true" [selectOptions]="optionsSetor" name="setor">
+			<ion-option *ngFor="let x of setor" [value]="x.setor_id">{{ x.setor_sigla }}</ion-option>
+		</ion-select>
+	</ion-item>
 	<ion-item>
 		<button ion-button type="submit" icon-end full>
 			Cadastrar

@@ -47,12 +47,13 @@ export class FunctionsProvider {
   	}); toast.present();
   }
 
-  public formataData(data) { //YYYY-MM-DD
-    var date = new Date(data);
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var year = date.getFullYear();
-    return year + "-" + month + "-" + day;
+  public formataData(data) { //DD-MM-YYYY
+    let date = new Date();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let year = date.getFullYear();
+    let format = day + "-" + month + "-" + year
+    return format;
   }
 
   public getTimezone() { //Transform date to Brazil GMT

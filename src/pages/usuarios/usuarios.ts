@@ -59,7 +59,7 @@ export class UsuariosPage {
   }
 
   getPesquisa() {
-       this.api.getUsuariosExternos(this.pesquisa.orgao_id).subscribe(res => {
+       this.api.getUsuariosExternos(this.pesquisa.orgao_id, this.pesquisa.setor_id).subscribe(res => {
          this.resultado = res;
          console.log(res)
        }, Error => {

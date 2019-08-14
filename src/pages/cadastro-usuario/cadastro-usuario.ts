@@ -17,22 +17,33 @@ import { FunctionsProvider } from '../../providers/functions/functions';
   templateUrl: 'cadastro-usuario.html',
 })
 export class CadastroUsuarioPage {
-	private orgao;
+  private orgao;
+  private setor;
 	public solicitante = {
 		orgao_id: 0,
 		solicitante_nome: '',
-		setor_id: null
+		setor_id: 0
 	}
 	private optionsOrgao = {
     title: 'Órgãos',
     subtitle: 'Teste'
   }
-
+  private optionsSetor = {
+		title: 'Setores da SEPOG',
+		subtitle: '',
+		mode: 'ios'
+	}
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider,
   				public functions: FunctionsProvider) {
   	this.api.getOrgaosExternos().subscribe(res => {
         this.orgao = res;
         console.log(this.orgao)
+      });
+    this.api.getSetores().subscribe(res => {
+        this.setor = res;
+        console.log(res)
+      }, Error => {
+        this.functions.showToastError('Erro ao obter a lista de setores!');
       });
   }
 

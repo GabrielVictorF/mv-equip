@@ -6,13 +6,6 @@ import { NovaMovimentacaoPage } from '../nova-movimentacao/nova-movimentacao';
 import { ApiProvider } from '../../providers/api/api';
 import { FunctionsProvider } from '../../providers/functions/functions';
 
-/** 
- * Generated class for the DetalhePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-detalhe',
@@ -93,7 +86,10 @@ export class DetalhePage {
           alert.present();
         }
       },
-      {
+    ]
+    });
+    if (this.detalhe == "emprestimo") { // Caso seja emprestimo, adiciona o objeto de finalização de empréstimo
+      let finaliza = {
         text: 'Finalizar empréstimo',
         icon: 'checkbox-outline',
         handler: () => {
@@ -101,20 +97,19 @@ export class DetalhePage {
             data_devolucao: new Date().toISOString()
           };
           this.api.putFinalizaEmprestimo(this.data.emprestimo_id, hoje).subscribe(res => {
-            this.data.data_devolucao = hoje.data_devolucao.substring(0,10); 
-            this.api.getEmpMovimentacoesPage(87).subscribe(res => {
-              this.data = res,
-              console.log(this.data)
-            });
+            //this.data.data_devolucao_format = hoje.data_devolucao.substring(0,10);
+            this.data.data_devolucao_format = this.functions.formataData(hoje)
+            console.log(this.data.data_devolucao_format)
             this.functions.showToastSuccess("Equipamento recebido hoje!");
             this.events.publish('emprestimoExcluido'); //Evento de modificação no empréstimo
           }, Error => {
             this.functions.showToastError("Erro ao atualizar empréstimo");
           });
         }
-      }
-    ]
-    });
+      };
+      action.data.buttons.push(finaliza);
+    }
+    console.log(action)
     action.present();
   }
 }
