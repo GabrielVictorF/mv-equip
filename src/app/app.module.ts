@@ -27,8 +27,8 @@ import { FunctionsProvider } from '../providers/functions/functions';
 import { File } from '@ionic-native/file';  
 
 import { MenuComponent } from '../components/menu/menu';
-import * as Sentry from 'sentry-cordova';
-import * as TEste from '@sentry/browser';
+//import * as Sentry from 'sentry-cordova';
+import * as Sentry from '@sentry/browser';
 import { ExpressProvider } from '../providers/express/express';
 
 Sentry.init({ 
@@ -53,7 +53,8 @@ export class SentryIonicErrorHandler extends IonicErrorHandler {
   handleError(error) {
     super.handleError(error);
     try {
-      Sentry.captureException(error.originalError || error);
+      //const eventId = Sentry.captureException(error.originalError || error);
+      //let sentry = Sentry.showReportDialog({ eventId });
     } catch (e) {
       console.error(e);
     }

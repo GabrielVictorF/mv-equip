@@ -208,7 +208,7 @@ export class ApiProvider {
         'Access-Control-Allow-Origin': 'http://localhost:8100'
       })
     }); 
-    let url = "http://www.sentry.io/api/0/projects/gabriel-victor/mv-equip-sepog/user-feedback/";
+    let url = "https://sentry.io/api/0/projects/gabriel-victor/mv-equip-sepog/user-feedback/";
     console.log(httpOptions)
     let body2 = {
       "comments": "It brokeaa!", 

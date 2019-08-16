@@ -25,7 +25,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public modalCtrl: ModalController,
     public api: ApiProvider, public functions: FunctionsProvider) {
     //this.iniciaModal();
-    //this.functions.showToast('ERRRRRROO')
+   // this.functions.aasashasasaa();
+    //this.functions.showToastError('ERRRRRROO')
 }  
 
   pageNovaMovimentacao() {

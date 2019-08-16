@@ -50,12 +50,7 @@ export class MovimentacoesPage {
       if (refreshEvent)
       refreshEvent.complete();
       this.load.dismiss();
-      let alert = this.alertCtrl.create({
-        title: 'Erro!',
-        subTitle: 'Erro ao obter empréstimos, tente novamente em breve.',
-        buttons: ['OK']
-      })
-      alert.present();
+      this.functions.showToastError('Erro ao obter os empréstimos...');
     });
   }
 

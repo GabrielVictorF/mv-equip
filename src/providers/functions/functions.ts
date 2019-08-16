@@ -25,14 +25,14 @@ export class FunctionsProvider {
   public showToastError(message: string, sentry?: any) {
   	let toast = this.toastCtrl.create({
   		message: message,
-  		duration: 2000,
+  		duration: 3300,
       showCloseButton: true,
       closeButtonText: 'Reportar erro'
   	}); 
 
     toast.onDidDismiss((data, role) => {
       if (role == 'close') {
-        var evento = new CustomEvent('user-feedback');
+        var evento = new CustomEvent('user-feedback', {detail: localStorage.getItem('sentry-error-ev-id')});
         document.dispatchEvent(evento);
       }
     }); toast.present();

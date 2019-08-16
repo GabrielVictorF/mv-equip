@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/login/login';
 
 import { FunctionsProvider } from '../providers/functions/functions';
 import { ApiProvider } from '../providers/api/api';
+import * as Sentry from '@sentry/browser';
 //declare var Sentry: any;
 
 @Component({
@@ -19,8 +20,28 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     public functions: FunctionsProvider, public alertCtrl: AlertController,
     public api: ApiProvider) {
+      
     platform.ready().then(() => {
-      document.addEventListener('user-feedback', (event_id) => {
+      document.addEventListener('user-feedback', (event_id: CustomEvent) => {
+        let options = {
+          lang: 'pt-br',
+          title: 'Suporte ao usuário',
+          subtitle: 'Nos conte o que aconteceu',
+          subtitle2: '',
+          labelName: 'Seu nome',
+          labelEmail: 'Seu e-mail',
+          labelComments: 'O que aconteceu?',
+          labelClose: 'Fechar',
+          labelSubmit: 'Enviar',
+          errorGeneric: 'Ocorreu um erro',
+          eventId: event_id.detail,
+          errorFormEntry: 'Todos os campos precisam ser preenchidos',
+          successMessage: 'Seu report foi enviado a equipe de suporte, favor aguardar para o problema ser solucionado.'
+        };
+        Sentry.showReportDialog(options);
+        localStorage.removeItem('user-feedback');
+      });
+      /*document.addEventListener('user-feedback', (event_id) => {
         let alert = this.alertCtrl.create({
           title: 'Suporte ao usuário',
           inputs:[{
@@ -46,7 +67,7 @@ export class MyApp {
             }
           }]
         }); alert.present();
-      });
+      });*/
     //entry.init({ dsn: 'https://52f83d3d624a423189109d4a867dc15b@sentry.io/1515195' });
       if (localStorage.getItem('token'))
         this.rootPage = HomePage;
